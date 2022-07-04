@@ -1,16 +1,3 @@
-# project32
+# Get Recommendations
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Recommendation systems are programs that suggest recommendations to users depending on a variety of criteria. These systems estimate the most likely product that consumers will buy and that they will be interested in. Various companies like Netflix, Amazon, and other use recommender systems to help their users find the right product or movie for them.\n\nThis web application is demonstration of how recommendation system work.
