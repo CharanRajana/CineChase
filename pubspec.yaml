@@ -31,11 +31,19 @@ dependencies:
   dio: ^4.0.6
   flutter:
     sdk: flutter
-  google_fonts: ^3.0.1
+  google_fonts: ^4.0.3
   tmdb_api: ^2.1.2
+  json_annotation: ^4.8.0
+  equatable: ^2.0.5
+  http: ^0.13.5
+  flutter_riverpod: ^2.3.2
+  dynamic_color: ^1.6.2
+  envied: ^0.3.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0
+  json_serializable: ^6.6.1
+  build_runner: ^2.3.3
   flutter_test:
     sdk: flutter
 
