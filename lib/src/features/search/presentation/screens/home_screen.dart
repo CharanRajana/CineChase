@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:project32/src/core/extras/asset_strings.dart';
 import 'package:project32/src/core/widgets/movies_list.dart';
+import 'package:project32/src/features/search/presentation/screens/search_screen.dart';
 
 import '../../../movies/data/movies_api_client/providers.dart';
 
@@ -30,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: Color.fromRGBO(255, 255, 255, 0.5),
                     colorBlendMode: BlendMode.modulate,
                     image: AssetImage(
-                      'assets/images/bg.jpg',
+                      Assets.bgImage,
                     ),
                   ),
                 ),
@@ -53,27 +55,38 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: SizedBox(
                     height: 60,
                     width: size.width * 0.7,
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(80),
-                      ),
-                      child: ListTile(
-                        minLeadingWidth: 20,
-                        leading: const Padding(
-                          padding: EdgeInsets.only(top: 3),
-                          child: Icon(
-                            Icons.search,
-                          ),
+                    child: GestureDetector(
+                      onTap: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const SearchScreen(),
                         ),
-                        title: Text(
-                          'Search for Movie Recommendations',
-                          overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge
-                              ?.copyWith(
-                                color: Theme.of(context).colorScheme.outline,
+                      ),
+                      child: Hero(
+                        tag: 'search',
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(80),
+                          ),
+                          child: ListTile(
+                            minLeadingWidth: 10,
+                            leading: const Padding(
+                              padding: EdgeInsets.only(top: 3),
+                              child: Icon(
+                                Icons.search,
                               ),
+                            ),
+                            title: Text(
+                              'Search for Movie Recommendations',
+                              overflow: TextOverflow.ellipsis,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge
+                                  ?.copyWith(
+                                    color:
+                                        Theme.of(context).colorScheme.outline,
+                                  ),
+                            ),
+                          ),
                         ),
                       ),
                     ),

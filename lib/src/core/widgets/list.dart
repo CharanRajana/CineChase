@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:project32/src/core/extras/asset_strings.dart';
 import 'package:project32/src/features/movies/presentation/screens/movies_details.dart';
 
 import '../../features/movies/data/movies_api_client/models/models.dart';
-import '../constants.dart';
+import '../extras/constants.dart';
 
 SizedBox list(List<Movie> movies, BuildContext context, Axis axis) {
   return SizedBox(
@@ -19,26 +20,32 @@ SizedBox list(List<Movie> movies, BuildContext context, Axis axis) {
                   builder: (context) => MovieDetailsScreen(id: item.id),
                 ),
               ),
-              child: Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: GridTile(
-                    footer: GridTileBar(
-                      backgroundColor: Colors.black54,
-                      title: Text(
-                        item.title,
-                        textAlign: TextAlign.center,
-                        style:
-                            Theme.of(context).textTheme.titleMedium?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.amber,
-                                ),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                child: Card(
+                  clipBehavior: Clip.antiAlias,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GridTile(
+                      footer: GridTileBar(
+                        backgroundColor: Colors.black54,
+                        title: Text(
+                          item.title,
+                          textAlign: TextAlign.center,
+                          style:
+                              Theme.of(context).textTheme.titleMedium?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.amber,
+                                  ),
+                        ),
                       ),
-                    ),
-                    child: Image(
-                      image: NetworkImage(
-                          Constants.posterPrefix + item.posterPath),
-                      fit: BoxFit.cover,
+                      child: FadeInImage(
+                        placeholder: const AssetImage(Assets.placeholder),
+                        image: NetworkImage(
+                            Constants.posterPrefix + item.posterPath),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),

@@ -1,6 +1,6 @@
 import 'api_client.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../../core/constants.dart';
+import '../../../../core/extras/constants.dart';
 import 'models/models.dart';
 
 final apiClientProvider = Provider<MoviesApiClient>(
@@ -18,3 +18,7 @@ final nowPlayingProvider = FutureProvider.autoDispose<List<Movie>>(
 final recommendedMoviesProvider = FutureProvider.autoDispose
     .family<List<Movie>, int>(
         (ref, id) => ref.read(apiClientProvider).fetchRecommendations(id));
+
+final fetchMoviesProvider = FutureProvider.autoDispose
+    .family<List<Movie>, String>(
+        (ref, query) => ref.read(apiClientProvider).fetchMovies(query));

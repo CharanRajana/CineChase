@@ -1,7 +1,7 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import '../../../../core/constants.dart';
+import '../../../../core/extras/constants.dart';
 import 'models/models.dart';
 
 class MoviesApiClient {

@@ -24,7 +24,7 @@ class MoviesList extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
             child: Text(
               title,
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
@@ -34,6 +34,9 @@ class MoviesList extends StatelessWidget {
             ),
           ),
           list(movies, context, axis),
+          const SizedBox(
+            height: 10,
+          )
         ],
       ),
     );

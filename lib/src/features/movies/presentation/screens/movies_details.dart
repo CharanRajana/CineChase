@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../core/constants.dart';
+import '../../../../core/extras/constants.dart';
 import '../../../../core/widgets/movies_list.dart';
 import '../../data/movies_api_client/providers.dart';
 
