@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project32/src/core/widgets/list.dart';
+import 'package:project32/src/core/widgets/horizontal_list_card.dart';
 
 import '../../features/movies/data/movies_api_client/models/models.dart';
 
@@ -33,7 +33,7 @@ class MoviesList extends StatelessWidget {
                   ),
             ),
           ),
-          list(movies, context, axis),
+          horizontalMoviesList(movies, context),
           const SizedBox(
             height: 10,
           )
