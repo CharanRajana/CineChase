@@ -16,7 +16,6 @@ class Movie extends Equatable {
   final String backdropPath;
   @JsonKey(defaultValue: '', name: 'poster_path')
   final String posterPath;
-  @JsonKey(name: 'original_title')
   final String title;
   @JsonKey(defaultValue: '')
   final String overview;
