@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project32/src/core/extras/asset_strings.dart';
-import 'package:project32/src/features/movies/presentation/screens/movies_details.dart';
-
-import '../../features/movies/data/movies_api_client/models/models.dart';
-import '../extras/constants.dart';
+import 'package:project32/src/presentation/screens/movies_details.dart';
+import '../../core/extras/constants.dart';
+import '../../data/movies_api_client/models/movies_model.dart';
 
 SizedBox horizontalMoviesList(List<Movie> movies, BuildContext context) {
   return SizedBox(

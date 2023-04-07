@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../core/extras/constants.dart';
-import '../../../../core/widgets/horizontal_movies.dart';
+import '../../core/extras/constants.dart';
 import '../../data/movies_api_client/providers.dart';
+import '../components/horizontal_movies.dart';
 
 class MovieDetailsScreen extends ConsumerWidget {
   const MovieDetailsScreen({

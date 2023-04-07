@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:project32/src/features/movies/data/movies_api_client/providers.dart';
 
-import '../widgets/vertical_list_card.dart';
+import '../../data/movies_api_client/providers.dart';
+import '../components/vertical_list_card.dart';
 
 final textController = StateProvider.autoDispose<String>((ref) => "");
 

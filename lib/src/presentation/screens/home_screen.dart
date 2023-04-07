@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:project32/src/core/extras/asset_strings.dart';
-import 'package:project32/src/core/widgets/horizontal_movies.dart';
-import 'package:project32/src/features/search/presentation/screens/search_screen.dart';
-
-import '../../../movies/data/movies_api_client/providers.dart';
+import 'package:project32/src/presentation/components/horizontal_movies.dart';
+import 'package:project32/src/presentation/screens/search_screen.dart';
+import '../../data/movies_api_client/providers.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

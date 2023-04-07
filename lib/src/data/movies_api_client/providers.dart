@@ -1,6 +1,6 @@
 import 'api_client.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../../core/extras/constants.dart';
+import '../../../../../src/core/extras/constants.dart';
 import 'models/models.dart';
 
 final apiClientProvider = Provider<MoviesApiClient>(

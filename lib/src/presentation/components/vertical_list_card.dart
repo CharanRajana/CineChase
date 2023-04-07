@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/extras/asset_strings.dart';
-import '../../../../core/extras/constants.dart';
-import '../../../movies/data/movies_api_client/models/models.dart';
-import '../../../movies/presentation/screens/movies_details.dart';
+import '../../core/extras/asset_strings.dart';
+import '../../core/extras/constants.dart';
+import '../../data/movies_api_client/models/movies_model.dart';
+import '../screens/movies_details.dart';
 
 Padding verticalMoviesList(List<Movie> movies) {
   return Padding(

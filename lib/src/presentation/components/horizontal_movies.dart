@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:project32/src/core/widgets/horizontal_list_card.dart';
-
-import '../../features/movies/data/movies_api_client/models/models.dart';
+import '../components/horizontal_list_card.dart';
+import '../../data/movies_api_client/models/movies_model.dart';
 
 class MoviesList extends StatelessWidget {
   const MoviesList({
