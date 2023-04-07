@@ -1,7 +1,7 @@
-import 'api_client.dart';
+import '../../data/movies_api_client/api_client.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../../src/core/extras/constants.dart';
-import 'models/models.dart';
+import '../../data/movies_api_client/models/models.dart';
 
 final apiClientProvider = Provider<MoviesApiClient>(
     (ref) => MoviesApiClient(apiKey: Constants.apiKey));
@@ -22,3 +22,5 @@ final recommendedMoviesProvider = FutureProvider.autoDispose
 final fetchMoviesProvider = FutureProvider.autoDispose
     .family<List<Movie>, String>(
         (ref, query) => ref.read(apiClientProvider).fetchMovies(query));
+
+final ratingProvider = StateProvider.autoDispose<double>((ref) => 0);

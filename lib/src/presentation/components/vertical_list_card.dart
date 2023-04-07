@@ -24,17 +24,20 @@ Padding verticalMoviesList(List<Movie> movies) {
                     padding: const EdgeInsets.all(8.0),
                     child: SizedBox(
                       width: 150,
-                      child: FadeInImage(
-                        placeholder: const AssetImage(Assets.placeholder),
-                        image: movies[index].posterPath == ''
-                            ? const AssetImage(
-                                Assets.placeholder,
-                              ) as ImageProvider
-                            : NetworkImage(
-                                Constants.posterPrefix +
-                                    movies[index].posterPath,
-                              ),
-                        fit: BoxFit.cover,
+                      child: Hero(
+                        tag: 'poster${movies[index].id}',
+                        child: FadeInImage(
+                          placeholder: const AssetImage(Assets.placeholder),
+                          image: movies[index].posterPath == ''
+                              ? const AssetImage(
+                                  Assets.placeholder,
+                                ) as ImageProvider
+                              : NetworkImage(
+                                  Constants.posterPrefix +
+                                      movies[index].posterPath,
+                                ),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),

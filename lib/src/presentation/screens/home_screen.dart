@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:project32/src/core/extras/assets.dart';
 import 'package:project32/src/presentation/components/horizontal_movies.dart';
-import '../../data/movies_api_client/providers.dart';
+import '../../core/extras/providers.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -17,6 +17,14 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
+      floatingActionButton: FloatingActionButton.small(
+        backgroundColor: Colors.transparent,
+        onPressed: () {},
+        child: const CircleAvatar(
+          child: FlutterLogo(),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,

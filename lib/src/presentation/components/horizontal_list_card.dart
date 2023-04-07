@@ -31,16 +31,19 @@ SizedBox horizontalMoviesList(List<Movie> movies, BuildContext context) {
                           ),
                     ),
                   ),
-                  child: FadeInImage(
-                    placeholder: const AssetImage(Assets.placeholder),
-                    image: movies[index].posterPath == ''
-                        ? const AssetImage(
-                            Assets.placeholder,
-                          ) as ImageProvider
-                        : NetworkImage(
-                            Constants.posterPrefix + movies[index].posterPath,
-                          ),
-                    fit: BoxFit.cover,
+                  child: Hero(
+                    tag: 'poster${movies[index].id}',
+                    child: FadeInImage(
+                      placeholder: const AssetImage(Assets.placeholder),
+                      image: movies[index].posterPath == ''
+                          ? const AssetImage(
+                              Assets.placeholder,
+                            ) as ImageProvider
+                          : NetworkImage(
+                              Constants.posterPrefix + movies[index].posterPath,
+                            ),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),

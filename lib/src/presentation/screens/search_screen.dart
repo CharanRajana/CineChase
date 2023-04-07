@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../data/movies_api_client/providers.dart';
+import '../../core/extras/providers.dart';
 import '../components/vertical_list_card.dart';
 
 final textController = StateProvider.autoDispose<String>((ref) => "");
@@ -23,7 +23,7 @@ class SearchScreen extends ConsumerWidget {
             child: Material(
               child: TextField(
                 controller: controller,
-                autofocus: true,
+                //autofocus: true,
                 onSubmitted: (value) {
                   debugPrint(value);
                   ref.read(textController.notifier).state = value;
