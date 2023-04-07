@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:project32/src/core/extras/assets.dart';
-import 'package:project32/src/presentation/screens/movies_details.dart';
 import '../../core/extras/constants.dart';
 import '../../data/movies_api_client/models/movies_model.dart';
 
@@ -13,11 +13,8 @@ SizedBox horizontalMoviesList(List<Movie> movies, BuildContext context) {
         return SizedBox(
           width: 250,
           child: GestureDetector(
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => MovieDetailsScreen(id: movies[index].id),
-              ),
-            ),
+            onTap: () => context
+                .goNamed('movies', params: {'id': '${movies[index].id}'}),
             child: Card(
               clipBehavior: Clip.antiAlias,
               child: Padding(

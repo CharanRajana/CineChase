@@ -2,7 +2,7 @@ import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project32/src/presentation/screens/home_screen.dart';
+import 'package:project32/src/core/router.dart';
 
 void main() {
   runApp(
@@ -19,7 +19,8 @@ class Application extends StatelessWidget {
   Widget build(BuildContext context) {
     return DynamicColorBuilder(
       builder: (ColorScheme? lightDynamic, ColorScheme? darkDynamic) {
-        return MaterialApp(
+        return MaterialApp.router(
+          routerConfig: router,
           debugShowCheckedModeBanner: false,
           title: 'Group project',
           darkTheme: ThemeData(
@@ -33,7 +34,6 @@ class Application extends StatelessWidget {
                     brightness: Brightness.dark,
                   )),
           themeMode: ThemeMode.dark,
-          home: const HomeScreen(),
         );
       },
     );

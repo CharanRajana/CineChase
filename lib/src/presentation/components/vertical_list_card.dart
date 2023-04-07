@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../core/extras/assets.dart';
 import '../../core/extras/constants.dart';
 import '../../data/movies_api_client/models/movies_model.dart';
-import '../screens/movies_details.dart';
 
 Padding verticalMoviesList(List<Movie> movies) {
   return Padding(
@@ -14,14 +14,8 @@ Padding verticalMoviesList(List<Movie> movies) {
         return SizedBox(
           height: 250,
           child: GestureDetector(
-            onTap: () => {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) =>
-                      MovieDetailsScreen(id: movies[index].id),
-                ),
-              ),
-            },
+            onTap: () => context
+                .pushNamed('movies', params: {'id': '${movies[index].id}'}),
             child: Card(
               child: Row(
                 mainAxisSize: MainAxisSize.min,

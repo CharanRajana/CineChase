@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:project32/src/core/extras/assets.dart';
 import 'package:project32/src/presentation/components/horizontal_movies.dart';
-import 'package:project32/src/presentation/screens/search_screen.dart';
 import '../../data/movies_api_client/providers.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -55,11 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 60,
                     width: size.width * 0.7,
                     child: GestureDetector(
-                      onTap: () => Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const SearchScreen(),
-                        ),
-                      ),
+                      onTap: () => context.pushNamed('search'),
                       child: Hero(
                         tag: 'search',
                         child: Card(
