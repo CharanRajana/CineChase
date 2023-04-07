@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project32/src/core/extras/asset_strings.dart';
+import 'package:project32/src/core/extras/assets.dart';
 import 'package:project32/src/presentation/screens/movies_details.dart';
 import '../../core/extras/constants.dart';
 import '../../data/movies_api_client/models/movies_model.dart';

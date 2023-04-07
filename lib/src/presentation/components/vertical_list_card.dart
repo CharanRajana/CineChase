@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../core/extras/asset_strings.dart';
+import '../../core/extras/assets.dart';
 import '../../core/extras/constants.dart';
 import '../../data/movies_api_client/models/movies_model.dart';
 import '../screens/movies_details.dart';
