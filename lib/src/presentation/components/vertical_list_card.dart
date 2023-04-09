@@ -16,16 +16,16 @@ Padding verticalMoviesList(List<Movie> movies) {
           child: GestureDetector(
             onTap: () => context
                 .pushNamed('movies', params: {'id': '${movies[index].id}'}),
-            child: Card(
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SizedBox(
-                      width: 150,
-                      child: Hero(
-                        tag: 'poster${movies[index].id}',
+            child: Hero(
+              tag: 'poster${movies[index].id}',
+              child: Card(
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SizedBox(
+                        width: 150,
                         child: FadeInImage(
                           placeholder: const AssetImage(Assets.placeholder),
                           image: movies[index].posterPath == ''
@@ -40,54 +40,55 @@ Padding verticalMoviesList(List<Movie> movies) {
                         ),
                       ),
                     ),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 8,
-                      ),
-                      child: DefaultTextStyle(
-                        style: Theme.of(context).textTheme.bodyMedium!,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              movies[index].title,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge
-                                  ?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.amber,
-                                  ),
-                            ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 10),
-                              child: Text(
-                                movies[index].overview,
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 8,
+                        ),
+                        child: DefaultTextStyle(
+                          style: Theme.of(context).textTheme.bodyMedium!,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              Text(
+                                movies[index].title,
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyMedium
+                                    .bodyLarge
                                     ?.copyWith(
-                                      fontWeight: FontWeight.normal,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.amber,
                                     ),
-                                maxLines: 3,
-                                overflow: TextOverflow.clip,
                               ),
-                            ),
-                          ],
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 10),
+                                child: Text(
+                                  movies[index].overview,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium
+                                      ?.copyWith(
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                  maxLines: 3,
+                                  overflow: TextOverflow.clip,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  )
-                ],
+                    )
+                  ],
+                ),
               ),
             ),
           ),

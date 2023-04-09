@@ -15,24 +15,25 @@ SizedBox horizontalMoviesList(List<Movie> movies, BuildContext context) {
           child: GestureDetector(
             onTap: () => context
                 .goNamed('movies', params: {'id': '${movies[index].id}'}),
-            child: Card(
-              clipBehavior: Clip.antiAlias,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: GridTile(
-                  footer: GridTileBar(
-                    backgroundColor: Colors.black54,
-                    title: Text(
-                      movies[index].title,
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.amber,
-                          ),
+            child: Hero(
+              tag: 'poster${movies[index].id}',
+              child: Card(
+                clipBehavior: Clip.antiAlias,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: GridTile(
+                    footer: GridTileBar(
+                      backgroundColor: Colors.black54,
+                      title: Text(
+                        movies[index].title,
+                        textAlign: TextAlign.center,
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.amber,
+                                ),
+                      ),
                     ),
-                  ),
-                  child: Hero(
-                    tag: 'poster${movies[index].id}',
                     child: FadeInImage(
                       placeholder: const AssetImage(Assets.placeholder),
                       image: movies[index].posterPath == ''

@@ -37,45 +37,45 @@ class MovieDetailsScreen extends ConsumerWidget {
             scrollDirection: Axis.vertical,
             child: Column(
               children: [
-                Stack(
-                  children: [
-                    Container(
-                      height: 500,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: NetworkImage(
-                            Constants.bgPrefix + movie.backdropPath,
+                Hero(
+                  tag: 'poster${movie.id}',
+                  child: Stack(
+                    children: [
+                      Container(
+                        height: 500,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: NetworkImage(
+                              Constants.bgPrefix + movie.backdropPath,
+                            ),
+                            fit: BoxFit.cover,
                           ),
-                          fit: BoxFit.cover,
-                        ),
-                        gradient: const LinearGradient(
-                          colors: [Colors.black, Colors.transparent],
-                          begin: Alignment.bottomCenter,
-                          end: Alignment.topCenter,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      height: 500,
-                      width: double.infinity,
-                      decoration: const BoxDecoration(
-                        //color: Colors.white.withOpacity(0.5),
-                        gradient: LinearGradient(
-                          colors: [Colors.black, Colors.transparent],
-                          begin: Alignment.bottomCenter,
-                          end: Alignment.topCenter,
+                          gradient: const LinearGradient(
+                            colors: [Colors.black, Colors.transparent],
+                            begin: Alignment.bottomCenter,
+                            end: Alignment.topCenter,
+                          ),
                         ),
                       ),
-                    ),
-                    Positioned(
-                      top: 200,
-                      left: 20,
-                      child: SizedBox(
-                        width: 150,
-                        height: 400,
-                        child: Hero(
-                          tag: 'poster${movie.id}',
+                      Container(
+                        height: 500,
+                        width: double.infinity,
+                        decoration: const BoxDecoration(
+                          //color: Colors.white.withOpacity(0.5),
+                          gradient: LinearGradient(
+                            colors: [Colors.black, Colors.transparent],
+                            begin: Alignment.bottomCenter,
+                            end: Alignment.topCenter,
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        top: 200,
+                        left: 20,
+                        child: SizedBox(
+                          width: 150,
+                          height: 400,
                           child: Image(
                             image: NetworkImage(
                               Constants.posterPrefix + movie.posterPath,
@@ -83,8 +83,8 @@ class MovieDetailsScreen extends ConsumerWidget {
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 Flex(
                   direction: Axis.horizontal,
