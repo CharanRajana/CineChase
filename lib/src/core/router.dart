@@ -1,7 +1,7 @@
 import 'package:go_router/go_router.dart';
-import 'package:project32/src/presentation/screens/home_screen.dart';
-import 'package:project32/src/presentation/screens/movies_details_screen.dart';
-import 'package:project32/src/presentation/screens/search_screen.dart';
+import 'package:project32/src/presentation/screens/home_screen/home_screen.dart';
+import 'package:project32/src/presentation/screens/movies_details_screen/movies_details_screen.dart';
+import 'package:project32/src/presentation/screens/search_screen/search_screen.dart';
 
 final GoRouter router = GoRouter(
   routes: [
