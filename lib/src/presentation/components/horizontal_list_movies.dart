@@ -27,13 +27,14 @@ class MoviesList extends StatelessWidget {
             child: Text(
               title,
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    color: Theme.of(context).colorScheme.primary,
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
                   ),
             ),
           ),
           SizedBox(
-            height: 300,
+            height: 280,
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
@@ -43,36 +44,67 @@ class MoviesList extends StatelessWidget {
                       MovieDetailsScreen(id: movies[index].id),
                   closedBuilder: (context, action) {
                     return SizedBox(
-                      width: 250,
+                      width: 350,
                       child: Card(
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: GridTile(
-                            footer: GridTileBar(
-                              backgroundColor: Colors.black54,
-                              title: Text(
-                                movies[index].title,
-                                textAlign: TextAlign.center,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium
-                                    ?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.amber,
-                                    ),
-                              ),
-                            ),
-                            child: FadeInImage(
-                              placeholder: const AssetImage(Assets.placeholder),
-                              image: movies[index].posterPath == ''
-                                  ? const AssetImage(
+                          child: AspectRatio(
+                            aspectRatio: 16 / 9,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8),
+                              child: Stack(
+                                children: [
+                                  FadeInImage(
+                                    width: double.infinity,
+                                    placeholder: const AssetImage(
                                       Assets.placeholder,
-                                    ) as ImageProvider
-                                  : NetworkImage(
-                                      Constants.posterPrefix +
-                                          movies[index].posterPath,
                                     ),
-                              fit: BoxFit.cover,
+                                    image: movies[index].posterPath == ''
+                                        ? const AssetImage(
+                                            Assets.placeholder,
+                                          ) as ImageProvider
+                                        : NetworkImage(
+                                            Constants.posterPrefix +
+                                                movies[index].posterPath,
+                                          ),
+                                    fit: BoxFit.fitWidth,
+                                  ),
+                                  const Positioned.fill(
+                                    child: DecoratedBox(
+                                      decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                          begin: Alignment.topCenter,
+                                          end: Alignment.bottomCenter,
+                                          colors: [
+                                            Colors.transparent,
+                                            Colors.black,
+                                            // Theme.of(context)
+                                            //     .colorScheme
+                                            //     .onPrimaryContainer,
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.bottomCenter,
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 16, horizontal: 16),
+                                      child: Text(
+                                        movies[index].title,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge!
+                                            .copyWith(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),

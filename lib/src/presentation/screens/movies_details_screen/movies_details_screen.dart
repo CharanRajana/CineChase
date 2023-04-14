@@ -92,21 +92,28 @@ class MovieDetailsScreen extends ConsumerWidget {
                             child: DefaultTextStyle(
                               style: Theme.of(context).textTheme.titleMedium!,
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.max,
                                 children: [
                                   const SizedBox(
                                     height: 5,
                                   ),
-                                  Text(
-                                    movie.title,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium
-                                        ?.copyWith(
-                                          color: Colors.amber,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                  FittedBox(
+                                    fit: BoxFit.fitWidth,
+                                    child: Text(
+                                      movie.title,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium
+                                          ?.copyWith(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
                                   ),
                                   const SizedBox(
                                     height: 5,
@@ -120,7 +127,9 @@ class MovieDetailsScreen extends ConsumerWidget {
                                               .textTheme
                                               .titleSmall
                                               ?.copyWith(
-                                                  color: Colors.amber,
+                                                  color: Theme.of(context)
+                                                      .colorScheme
+                                                      .primary,
                                                   fontWeight: FontWeight.bold),
                                         ),
                                         TextSpan(
@@ -139,8 +148,9 @@ class MovieDetailsScreen extends ConsumerWidget {
                                     height: 5,
                                   ),
                                   IconTheme(
-                                    data: const IconThemeData(
-                                      color: Colors.amber,
+                                    data: IconThemeData(
+                                      color:
+                                          Theme.of(context).colorScheme.primary,
                                       size: 24,
                                     ),
                                     child: GestureDetector(
@@ -168,10 +178,12 @@ class MovieDetailsScreen extends ConsumerWidget {
                       children: [
                         TextSpan(
                           text: 'Synopsis: ',
-                          style:
-                              Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                    color: Colors.amber,
-                                  ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
                         ),
                         TextSpan(
                           text: movie.overview,

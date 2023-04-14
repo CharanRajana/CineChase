@@ -14,9 +14,9 @@ class RatingsBar extends StatelessWidget {
     return RatingBarIndicator(
       rating: ratings,
       itemSize: 20,
-      itemBuilder: (context, index) => const Icon(
+      itemBuilder: (context, index) => Icon(
         Icons.star,
-        color: Colors.amber,
+        color: Theme.of(context).colorScheme.primary,
       ),
       itemCount: 5,
       direction: Axis.horizontal,

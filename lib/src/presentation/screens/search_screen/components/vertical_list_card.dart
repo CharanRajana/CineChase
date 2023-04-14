@@ -26,17 +26,20 @@ Padding verticalMoviesList(List<Movie> movies) {
                       padding: const EdgeInsets.all(8.0),
                       child: SizedBox(
                         width: 150,
-                        child: FadeInImage(
-                          placeholder: const AssetImage(Assets.placeholder),
-                          image: movies[index].posterPath == ''
-                              ? const AssetImage(
-                                  Assets.placeholder,
-                                ) as ImageProvider
-                              : NetworkImage(
-                                  Constants.posterPrefix +
-                                      movies[index].posterPath,
-                                ),
-                          fit: BoxFit.cover,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: FadeInImage(
+                            placeholder: const AssetImage(Assets.placeholder),
+                            image: movies[index].posterPath == ''
+                                ? const AssetImage(
+                                    Assets.placeholder,
+                                  ) as ImageProvider
+                                : NetworkImage(
+                                    Constants.posterPrefix +
+                                        movies[index].posterPath,
+                                  ),
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),
@@ -61,7 +64,8 @@ Padding verticalMoviesList(List<Movie> movies) {
                                     .bodyLarge
                                     ?.copyWith(
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.amber,
+                                      color:
+                                          Theme.of(context).colorScheme.primary,
                                     ),
                               ),
                               const SizedBox(
