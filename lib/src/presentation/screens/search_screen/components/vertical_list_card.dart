@@ -1,5 +1,6 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:project32/src/presentation/screens/movies_details_screen/movies_details_screen.dart';
 
 import '../../../../core/extras/assets.dart';
 import '../../../../core/extras/constants.dart';
@@ -11,83 +12,89 @@ Padding verticalMoviesList(List<Movie> movies) {
     child: ListView.separated(
       scrollDirection: Axis.vertical,
       itemBuilder: (context, index) {
-        return SizedBox(
-          height: 250,
-          child: GestureDetector(
-            onTap: () => context
-                .pushNamed('movies', params: {'id': '${movies[index].id}'}),
-            child: Card(
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SizedBox(
-                      width: 150,
-                      child: FadeInImage(
-                        placeholder: const AssetImage(Assets.placeholder),
-                        image: movies[index].posterPath == ''
-                            ? const AssetImage(
-                                Assets.placeholder,
-                              ) as ImageProvider
-                            : NetworkImage(
-                                Constants.posterPrefix +
-                                    movies[index].posterPath,
-                              ),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 8,
-                      ),
-                      child: DefaultTextStyle(
-                        style: Theme.of(context).textTheme.bodyMedium!,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              movies[index].title,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge
-                                  ?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.amber,
-                                  ),
-                            ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 10),
-                              child: Text(
-                                movies[index].overview,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium
-                                    ?.copyWith(
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                maxLines: 3,
-                                overflow: TextOverflow.clip,
-                              ),
-                            ),
-                          ],
+        return OpenContainer(
+          closedColor: Colors.transparent,
+          openColor: Colors.transparent,
+          closedBuilder: (context, action) {
+            return SizedBox(
+              height: 250,
+              child: Card(
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SizedBox(
+                        width: 150,
+                        child: FadeInImage(
+                          placeholder: const AssetImage(Assets.placeholder),
+                          image: movies[index].posterPath == ''
+                              ? const AssetImage(
+                                  Assets.placeholder,
+                                ) as ImageProvider
+                              : NetworkImage(
+                                  Constants.posterPrefix +
+                                      movies[index].posterPath,
+                                ),
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),
-                  )
-                ],
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 8,
+                        ),
+                        child: DefaultTextStyle(
+                          style: Theme.of(context).textTheme.bodyMedium!,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              Text(
+                                movies[index].title,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.amber,
+                                    ),
+                              ),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 10),
+                                child: Text(
+                                  movies[index].overview,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium
+                                      ?.copyWith(
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                  maxLines: 3,
+                                  overflow: TextOverflow.clip,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ),
+            );
+          },
+          openBuilder: (context, action) {
+            return MovieDetailsScreen(id: movies[index].id);
+          },
         );
       },
       separatorBuilder: (context, index) {

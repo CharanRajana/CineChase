@@ -14,90 +14,81 @@ class HomeScreen extends ConsumerWidget {
     final topMovies = ref.watch(topRatedMoviesProvider);
     final playingMovies = ref.watch(nowPlayingProvider);
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            pinned: true,
-            leading: const Icon(
-              Icons.menu_rounded,
-            ),
-            expandedHeight: 500,
-            flexibleSpace: FlexibleSpaceBar(
-              expandedTitleScale: 1.2,
-              titlePadding: const EdgeInsets.symmetric(
-                horizontal: 40,
-                vertical: 60,
-              ),
-              title: SearchCard(size: size),
-              centerTitle: true,
-              background: Container(
-                height: 500,
-                width: double.infinity,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    opacity: 0.5,
-                    image: AssetImage(
-                      Assets.bgImage,
-                    ),
-                  ),
-                ),
-                child: Container(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Stack(
+              children: [
+                Container(
+                  height: 500,
+                  width: double.infinity,
                   decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [Colors.black, Colors.transparent],
-                      begin: Alignment.bottomCenter,
-                      end: Alignment.topCenter,
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      opacity: 0.5,
+                      image: AssetImage(
+                        Assets.bgImage,
+                      ),
+                    ),
+                  ),
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [Colors.black, Colors.transparent],
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                      ),
                     ),
                   ),
                 ),
-              ),
+                const Align(
+                  alignment: Alignment.topLeft,
+                  child: Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: CircleAvatar(
+                      child: Icon(
+                        Icons.menu_rounded,
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: 300,
+                  left: size.width * 0.1,
+                  right: size.width * 0.1,
+                  child: SearchCard(size: size),
+                ),
+              ],
             ),
-          ),
-          playingMovies.when(
-            data: (movies) {
-              return SliverToBoxAdapter(
-                child: MoviesList(title: 'Now Playing Movies', movies: movies),
-              );
-            },
-            error: (error, stackTrace) => SliverToBoxAdapter(
-              child: Center(
+            playingMovies.when(
+              data: (movies) {
+                return MoviesList(title: 'Now Playing Movies', movies: movies);
+              },
+              error: (error, stackTrace) => Center(
                 child: Text(
                   error.toString(),
                 ),
               ),
+              loading: () => const SizedBox(),
             ),
-            loading: () => const SliverToBoxAdapter(
-              child: Center(
-                child: SizedBox(),
-              ),
-            ),
-          ),
-          const SliverToBoxAdapter(
-            child: SizedBox(
+            const SizedBox(
               height: 20,
             ),
-          ),
-          topMovies.when(
-            data: (movies) {
-              return SliverToBoxAdapter(
-                child: MoviesList(title: 'Top Rated Movies', movies: movies),
-              );
-            },
-            error: (error, stackTrace) => SliverToBoxAdapter(
-              child: Center(
+            topMovies.when(
+              data: (movies) {
+                return MoviesList(title: 'Top Rated Movies', movies: movies);
+              },
+              error: (error, stackTrace) => Center(
                 child: Text(
                   error.toString(),
                 ),
               ),
-            ),
-            loading: () => const SliverToBoxAdapter(
-              child: Center(
+              loading: () => const Center(
                 child: SizedBox(),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
