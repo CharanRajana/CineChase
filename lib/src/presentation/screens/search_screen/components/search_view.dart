@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../search_screen.dart';
 
@@ -17,7 +18,7 @@ class SearchView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return TextField(
       controller: controller,
-      //autofocus: true,
+      autofocus: true,
       onSubmitted: (value) {
         debugPrint(value);
         ref.read(textController.notifier).state = value;
@@ -31,19 +32,22 @@ class SearchView extends ConsumerWidget {
               color: Theme.of(context).colorScheme.onSurfaceVariant,
             ),
         prefixIcon: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: GestureDetector(
-            onTap: () => Navigator.of(context).pop(),
+            onTap: () => context.pop(),
             child: Icon(
               Icons.arrow_back,
-              color: Theme.of(context).colorScheme.onSurfaceVariant,
+              color: Theme.of(context).colorScheme.onSurface,
             ),
           ),
         ),
         suffixIcon: controllerText.isEmpty
             ? null
             : IconButton(
-                icon: const Icon(Icons.close),
+                icon: Icon(
+                  Icons.close,
+                  color: Theme.of(context).colorScheme.onSurface,
+                ),
                 onPressed: () {
                   ref.read(textController.notifier).state = "";
                   controller.clear(); //clear TextField

@@ -21,17 +21,17 @@ class InteractiveRatingBar extends ConsumerWidget {
       allowHalfRating: true,
       itemCount: 5,
       ratingWidget: RatingWidget(
-        full: Icon(
+        full: const Icon(
           Icons.star,
-          color: Theme.of(context).colorScheme.primary,
+          color: Colors.amber,
         ),
-        half: HalfFilledIcon(
+        half: const HalfFilledIcon(
           icon: Icons.star,
-          color: Theme.of(context).colorScheme.primary,
+          color: Colors.amber,
         ),
-        empty: Icon(
+        empty: const Icon(
           Icons.star_border,
-          color: Theme.of(context).colorScheme.primary,
+          color: Colors.amber,
         ),
       ),
       itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),

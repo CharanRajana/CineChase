@@ -19,10 +19,8 @@ class SearchScreen extends ConsumerWidget {
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          flexibleSpace: Material(
-            child: SearchView(
-                controller: controller, controllerText: controllerText),
-          ),
+          flexibleSpace: SearchView(
+              controller: controller, controllerText: controllerText),
         ),
         body: searchResults.when(
           data: (movies) {

@@ -2,8 +2,8 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:project32/src/presentation/screens/search_screen/search_screen.dart';
 
-class SearchCard extends StatelessWidget {
-  const SearchCard({
+class SearchBar extends StatelessWidget {
+  const SearchBar({
     super.key,
     required this.size,
   });
@@ -17,7 +17,7 @@ class SearchCard extends StatelessWidget {
       openColor: Colors.transparent,
       closedBuilder: (context, action) {
         return SizedBox(
-          height: 60,
+          height: 56,
           width: size.width * 0.7,
           child: Card(
             shape: RoundedRectangleBorder(
@@ -25,17 +25,15 @@ class SearchCard extends StatelessWidget {
             ),
             child: ListTile(
               minLeadingWidth: 10,
-              leading: const Padding(
-                padding: EdgeInsets.only(top: 3),
-                child: Icon(
-                  Icons.search,
-                ),
+              leading: Icon(
+                Icons.search,
+                color: Theme.of(context).colorScheme.onSurface,
               ),
               title: Text(
                 'Search for Movie Recommendations',
                 overflow: TextOverflow.ellipsis,
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: Theme.of(context).colorScheme.outline,
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
               ),
             ),
