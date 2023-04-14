@@ -24,7 +24,7 @@ class Application extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Group project',
           darkTheme: ThemeData(
-              fontFamily: GoogleFonts.merriweather().fontFamily,
+              fontFamily: GoogleFonts.rubik().fontFamily,
               useMaterial3: true,
               appBarTheme: const AppBarTheme(color: Colors.transparent),
               scaffoldBackgroundColor: Colors.black,
