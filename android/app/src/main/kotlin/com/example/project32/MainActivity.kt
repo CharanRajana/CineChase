@@ -1,4 +1,4 @@
-package com.example.project32
+package com.example.cinechase
 
 import io.flutter.embedding.android.FlutterActivity
 

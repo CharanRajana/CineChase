@@ -1,6 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
-import 'package:project32/src/presentation/screens/movies_details_screen/movies_details_screen.dart';
+import 'package:cinechase/src/presentation/screens/movies_details_screen/movies_details_screen.dart';
 
 import '../../../../core/extras/assets.dart';
 import '../../../../core/extras/constants.dart';

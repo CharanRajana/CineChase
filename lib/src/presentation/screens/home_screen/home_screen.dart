@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:project32/src/core/extras/assets.dart';
-import 'package:project32/src/presentation/components/horizontal_list_movies.dart';
-import 'package:project32/src/presentation/screens/home_screen/components/search_bar.dart';
+import 'package:cinechase/src/core/extras/assets.dart';
+import 'package:cinechase/src/presentation/components/horizontal_list_movies.dart';
+import 'package:cinechase/src/presentation/screens/home_screen/components/search_bar.dart';
 
 import '../../../core/extras/providers.dart';
 
@@ -42,13 +42,16 @@ class HomeScreen extends ConsumerWidget {
                       ),
                     ),
                   ),
-                  const Align(
-                    alignment: Alignment.topLeft,
+                  Align(
+                    alignment: Alignment.topRight,
                     child: Padding(
-                      padding: EdgeInsets.all(16.0),
-                      child: CircleAvatar(
-                        child: Icon(
-                          Icons.menu_rounded,
+                      padding: const EdgeInsets.all(16.0),
+                      child: InkWell(
+                        onTap: () {},
+                        child: const CircleAvatar(
+                          child: Icon(
+                            Icons.menu_rounded,
+                          ),
                         ),
                       ),
                     ),

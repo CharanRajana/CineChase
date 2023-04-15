@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../core/extras/constants.dart';
 import '../../../core/extras/providers.dart';
@@ -8,7 +7,7 @@ import '../../components/horizontal_list_movies.dart';
 import 'components/bottom_review_sheet.dart';
 import 'components/ratings_bar.dart';
 
-class MovieDetailsScreen extends ConsumerWidget {
+class MovieDetailsScreen extends ConsumerStatefulWidget {
   const MovieDetailsScreen({
     super.key,
     required this.id,
@@ -17,10 +16,15 @@ class MovieDetailsScreen extends ConsumerWidget {
   final int id;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final movie = ref.watch(movieDetailsProvider(id));
+  MovieDetailsScreenState createState() => MovieDetailsScreenState();
+}
+
+class MovieDetailsScreenState extends ConsumerState<MovieDetailsScreen> {
+  @override
+  Widget build(BuildContext context) {
+    final movie = ref.watch(movieDetailsProvider(widget.id));
     final ratings = ref.watch(ratingProvider);
-    final recommendation = ref.watch(recommendedMoviesProvider(id));
+    final recommendation = ref.watch(recommendedMoviesProvider(widget.id));
     return movie.when(
       data: (movie) {
         return Scaffold(
@@ -52,11 +56,25 @@ class MovieDetailsScreen extends ConsumerWidget {
                         ),
                       ),
                       Align(
+                        alignment: Alignment.topRight,
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: InkWell(
+                            onTap: () {},
+                            child: const CircleAvatar(
+                              child: Icon(
+                                Icons.menu_outlined,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Align(
                         alignment: Alignment.topLeft,
                         child: Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: InkWell(
-                            onTap: () => context.pop(),
+                            onTap: () => Navigator.of(context).pop(),
                             child: const CircleAvatar(
                               child: Icon(
                                 Icons.arrow_back_rounded,

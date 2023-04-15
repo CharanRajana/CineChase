@@ -5,22 +5,31 @@ import '../../../core/extras/providers.dart';
 import 'components/search_view.dart';
 import 'components/vertical_list_card.dart';
 
-final textController = StateProvider.autoDispose<String>((ref) => "");
+final searchTextEditingControllerProvider =
+    Provider.autoDispose<TextEditingController>(
+        (ref) => TextEditingController());
+final searchTextProvider = StateProvider<String>(
+    (ref) => ref.read(searchTextEditingControllerProvider).text);
 
-class SearchScreen extends ConsumerWidget {
+class SearchScreen extends ConsumerStatefulWidget {
   const SearchScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final controller = TextEditingController();
-    final controllerText = ref.watch(textController);
-    final searchResults = ref.watch(fetchMoviesProvider(controllerText));
+  SearchScreenState createState() => SearchScreenState();
+}
+
+class SearchScreenState extends ConsumerState<SearchScreen> {
+  @override
+  Widget build(BuildContext context) {
+    final searchController = ref.watch(searchTextEditingControllerProvider);
+    final searchText = ref.watch(searchTextProvider);
+    final searchResults = ref.watch(fetchMoviesProvider(searchText));
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
           flexibleSpace: SearchView(
-              controller: controller, controllerText: controllerText),
+              controller: searchController, controllerText: searchText),
         ),
         body: searchResults.when(
           data: (movies) {
