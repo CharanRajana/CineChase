@@ -32,7 +32,7 @@ class SearchView extends ConsumerWidget {
             ),
         prefixIcon: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: GestureDetector(
+          child: InkWell(
             onTap: () => Navigator.of(context).pop(),
             child: Icon(
               Icons.arrow_back,

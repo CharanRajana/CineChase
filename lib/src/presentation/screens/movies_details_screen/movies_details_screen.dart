@@ -191,7 +191,7 @@ class MovieDetailsScreenState extends ConsumerState<MovieDetailsScreen> {
                                             .primary,
                                         size: 24,
                                       ),
-                                      child: GestureDetector(
+                                      child: InkWell(
                                         onTap: () {
                                           bottomReviewSheet(
                                               context, ratings, ref);
