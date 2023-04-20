@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../../core/extras/providers.dart';
+import '../../../../core/providers.dart';
 import 'half_filled_icon.dart';
 
 class InteractiveRatingBar extends ConsumerWidget {

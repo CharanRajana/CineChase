@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../../core/extras/constants.dart';
-import '../../../core/extras/providers.dart';
+import '../../../core/constants.dart';
+import '../../../core/providers.dart';
 import '../../components/horizontal_list_movies.dart';
 import 'components/bottom_review_sheet.dart';
 import 'components/ratings_bar.dart';

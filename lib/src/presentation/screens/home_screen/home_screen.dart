@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:cinechase/src/core/extras/assets.dart';
 import 'package:cinechase/src/presentation/components/horizontal_list_movies.dart';
 import 'package:cinechase/src/presentation/screens/home_screen/components/search_bar.dart';
-
-import '../../../core/extras/providers.dart';
+import '../../../core/assets.dart';
+import '../../../core/providers.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});

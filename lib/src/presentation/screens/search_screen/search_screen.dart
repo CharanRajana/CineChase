@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../../core/extras/providers.dart';
+import '../../../core/providers.dart';
 import 'components/search_view.dart';
 import 'components/vertical_list_card.dart';
 

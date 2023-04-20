@@ -1,7 +1,7 @@
-import '../../data/movies_api_client/api_client.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../../../src/core/extras/constants.dart';
-import '../../data/movies_api_client/models/models.dart';
+import '../data/movies_api_client/api_client.dart';
+import '../data/movies_api_client/models/models.dart';
+import 'constants.dart';
 
 final apiClientProvider = Provider<MoviesApiClient>(
     (ref) => MoviesApiClient(apiKey: Constants.apiKey));
