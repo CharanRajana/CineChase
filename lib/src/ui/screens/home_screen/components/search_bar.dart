@@ -1,6 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
-import 'package:cinechase/src/presentation/screens/search_screen/search_screen.dart';
+import 'package:cinechase/src/ui/screens/search_screen/search_screen.dart';
 
 class SearchBar extends StatelessWidget {
   const SearchBar({

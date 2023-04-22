@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:cinechase/src/presentation/components/horizontal_list_movies.dart';
-import 'package:cinechase/src/presentation/screens/home_screen/components/search_bar.dart';
+import 'package:cinechase/src/ui/components/horizontal_list_movies.dart';
+import 'package:cinechase/src/ui/screens/home_screen/components/search_bar.dart';
 import '../../../core/assets.dart';
 import '../../../core/providers.dart';
 
