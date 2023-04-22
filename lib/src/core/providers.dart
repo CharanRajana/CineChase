@@ -24,3 +24,5 @@ final fetchMoviesProvider = FutureProvider.autoDispose
         (ref, query) => ref.read(apiClientProvider).fetchMovies(query));
 
 final ratingProvider = StateProvider.autoDispose<double>((ref) => 0);
+
+final isFavouriteProvider = StateProvider<bool>((ref) => false);

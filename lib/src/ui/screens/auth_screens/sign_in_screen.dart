@@ -2,14 +2,14 @@ import 'package:cinechase/src/ui/screens/auth_screens/components/custom_button.d
 import 'package:cinechase/src/ui/screens/auth_screens/components/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<RegisterPage> createState() => _RegisterPageState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _SignUpScreenState extends State<SignUpScreen> {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -70,9 +70,12 @@ class _RegisterPageState extends State<RegisterPage> {
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   const SizedBox(width: 4),
-                  Text('Login now',
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: Theme.of(context).colorScheme.secondary)),
+                  InkWell(
+                    onTap: () => Navigator.of(context).pop(),
+                    child: Text('Login now',
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: Theme.of(context).colorScheme.secondary)),
+                  ),
                 ],
               ),
             ],

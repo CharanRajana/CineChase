@@ -1,7 +1,7 @@
 import 'package:cinechase/src/core/theme.dart';
+import 'package:cinechase/src/ui/screens/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:cinechase/src/presentation/screens/home_screen/home_screen.dart';
 
 void main() {
   runApp(

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/constants.dart';
 import '../../../core/providers.dart';
 import '../../components/horizontal_list_movies.dart';
+import '../../components/popup_menu.dart';
 import 'components/bottom_review_sheet.dart';
 import 'components/ratings_bar.dart';
 
@@ -23,6 +24,7 @@ class MovieDetailsScreenState extends ConsumerState<MovieDetailsScreen> {
   Widget build(BuildContext context) {
     final movie = ref.watch(movieDetailsProvider(widget.id));
     final ratings = ref.watch(ratingProvider);
+    final isFavourite = ref.watch(isFavouriteProvider);
     final recommendation = ref.watch(recommendedMoviesProvider(widget.id));
     return movie.when(
       data: (movie) {
@@ -59,7 +61,9 @@ class MovieDetailsScreenState extends ConsumerState<MovieDetailsScreen> {
                         child: Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              showPopUpMenu(context);
+                            },
                             child: const CircleAvatar(
                               child: Icon(
                                 Icons.menu_outlined,
@@ -115,7 +119,7 @@ class MovieDetailsScreenState extends ConsumerState<MovieDetailsScreen> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     const SizedBox(
-                                      height: 5,
+                                      height: 10,
                                     ),
                                     FittedBox(
                                       fit: BoxFit.fitWidth,
@@ -134,7 +138,7 @@ class MovieDetailsScreenState extends ConsumerState<MovieDetailsScreen> {
                                       ),
                                     ),
                                     const SizedBox(
-                                      height: 5,
+                                      height: 10,
                                     ),
                                     RichText(
                                       text: TextSpan(
@@ -181,7 +185,7 @@ class MovieDetailsScreenState extends ConsumerState<MovieDetailsScreen> {
                                       ),
                                     ),
                                     const SizedBox(
-                                      height: 5,
+                                      height: 10,
                                     ),
                                     IconTheme(
                                       data: IconThemeData(
@@ -197,6 +201,33 @@ class MovieDetailsScreenState extends ConsumerState<MovieDetailsScreen> {
                                         },
                                         child: RatingsBar(ratings: ratings),
                                       ),
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        ref
+                                            .read(isFavouriteProvider.notifier)
+                                            .state = !isFavourite;
+                                      },
+                                      child: isFavourite
+                                          ? const Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 8.0),
+                                              child: Icon(
+                                                Icons.bookmark,
+                                                size: 20,
+                                                color: Colors.amber,
+                                              ),
+                                            )
+                                          : Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 8.0),
+                                              child: Icon(
+                                                Icons.bookmark_outline,
+                                                size: 20,
+                                                color: Colors.grey.shade600,
+                                              ),
+                                            ),
                                     ),
                                   ],
                                 ),
