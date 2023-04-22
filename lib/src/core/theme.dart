@@ -7,7 +7,7 @@ class CustomTheme {
         useMaterial3: true,
         scaffoldBackgroundColor: Colors.black,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.red.shade700,
+          seedColor: Colors.redAccent.shade700,
           brightness: Brightness.dark,
         ),
       );
