@@ -1,4 +1,4 @@
-import 'package:cinechase/src/ui/screens/movies_details_screen/movies_details_screen.dart';
+import 'package:cinechase/src/presentation/screens/movies_details_screen/movies_details_screen.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/assets.dart';
 import '../../../../core/constants.dart';
@@ -30,17 +30,20 @@ Padding verticalMoviesList(List<Movie> movies) {
                       width: 150,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8),
-                        child: FadeInImage(
-                          placeholder: const AssetImage(Assets.placeholder),
-                          image: movies[index].posterPath == ''
-                              ? const AssetImage(
-                                  Assets.placeholder,
-                                ) as ImageProvider
-                              : NetworkImage(
-                                  Constants.posterPrefix +
-                                      movies[index].posterPath,
-                                ),
-                          fit: BoxFit.cover,
+                        child: Hero(
+                          tag: movies[index].id.toString(),
+                          child: FadeInImage(
+                            placeholder: const AssetImage(Assets.placeholder),
+                            image: movies[index].posterPath == ''
+                                ? const AssetImage(
+                                    Assets.placeholder,
+                                  ) as ImageProvider
+                                : NetworkImage(
+                                    Constants.posterPrefix +
+                                        movies[index].posterPath,
+                                  ),
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),

@@ -1,5 +1,5 @@
-import 'package:cinechase/src/ui/screens/auth_screens/components/custom_button.dart';
-import 'package:cinechase/src/ui/screens/auth_screens/sign_in_screen.dart';
+import 'package:cinechase/src/presentation/screens/auth_screens/components/custom_button.dart';
+import 'package:cinechase/src/presentation/screens/auth_screens/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'components/custom_text_field.dart';

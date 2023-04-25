@@ -100,9 +100,12 @@ class MovieDetailsScreenState extends ConsumerState<MovieDetailsScreen> {
                               child: SizedBox(
                                 width: 150,
                                 height: 400,
-                                child: Image(
-                                  image: NetworkImage(
-                                    Constants.posterPrefix + movie.posterPath,
+                                child: Hero(
+                                  tag: movie.id.toString(),
+                                  child: Image(
+                                    image: NetworkImage(
+                                      Constants.posterPrefix + movie.posterPath,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -266,7 +269,7 @@ class MovieDetailsScreenState extends ConsumerState<MovieDetailsScreen> {
                   ),
                   recommendation.when(
                     data: (movies) {
-                      return MoviesList(
+                      return HorizontalMoviesList(
                           title:
                               'Recommendations\nBased on - ${movie.title.toUpperCase()}',
                           movies: movies);

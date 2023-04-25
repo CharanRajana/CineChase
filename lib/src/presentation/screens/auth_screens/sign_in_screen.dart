@@ -1,5 +1,5 @@
-import 'package:cinechase/src/ui/screens/auth_screens/components/custom_button.dart';
-import 'package:cinechase/src/ui/screens/auth_screens/components/custom_text_field.dart';
+import 'package:cinechase/src/presentation/screens/auth_screens/components/custom_button.dart';
+import 'package:cinechase/src/presentation/screens/auth_screens/components/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
 class SignUpScreen extends StatefulWidget {

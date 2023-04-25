@@ -1,8 +1,8 @@
-import 'package:cinechase/src/ui/components/popup_menu.dart';
+import 'package:cinechase/src/presentation/components/popup_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:cinechase/src/ui/components/horizontal_list_movies.dart';
-import 'package:cinechase/src/ui/screens/home_screen/components/search_bar.dart';
+import 'package:cinechase/src/presentation/components/horizontal_list_movies.dart';
+import 'package:cinechase/src/presentation/screens/home_screen/components/search_bar.dart';
 import '../../../core/assets.dart';
 import '../../../core/providers.dart';
 
@@ -69,7 +69,7 @@ class HomeScreen extends ConsumerWidget {
               ),
               playingMovies.when(
                 data: (movies) {
-                  return MoviesList(
+                  return HorizontalMoviesList(
                       title: 'Now Playing Movies', movies: movies);
                 },
                 error: (error, stackTrace) => Center(
@@ -84,7 +84,8 @@ class HomeScreen extends ConsumerWidget {
               ),
               topMovies.when(
                 data: (movies) {
-                  return MoviesList(title: 'Top Rated Movies', movies: movies);
+                  return HorizontalMoviesList(
+                      title: 'Top Rated Movies', movies: movies);
                 },
                 error: (error, stackTrace) => Center(
                   child: Text(
