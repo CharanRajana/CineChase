@@ -15,6 +15,7 @@ class InteractiveRatingBar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return RatingBar(
+      itemSize: 30,
       glow: false,
       initialRating: ratings,
       direction: Axis.horizontal,

@@ -30,6 +30,7 @@ class MovieDetailsScreenState extends ConsumerState<MovieDetailsScreen> {
       data: (movie) {
         return Scaffold(
           body: SafeArea(
+            top: false,
             child: SingleChildScrollView(
               child: Column(
                 children: [

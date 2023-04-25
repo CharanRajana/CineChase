@@ -16,7 +16,7 @@ Future<dynamic> bottomReviewSheet(
           children: [
             Text(
               'Rate the Movie, Out of 5',
-              style: Theme.of(context).textTheme.headlineMedium,
+              style: Theme.of(context).textTheme.headlineSmall,
             ),
             InteractiveRatingBar(ratings: ratings),
           ],

@@ -15,13 +15,14 @@ class HomeScreen extends ConsumerWidget {
     final playingMovies = ref.watch(nowPlayingProvider);
     return Scaffold(
       body: SafeArea(
+        top: false,
         child: SingleChildScrollView(
           child: Column(
             children: [
               Stack(
                 children: [
                   Container(
-                    height: 500,
+                    height: 400,
                     width: double.infinity,
                     decoration: const BoxDecoration(
                       image: DecorationImage(
