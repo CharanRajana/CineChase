@@ -26,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: InkWell(
-                  onTap: () => Navigator.of(context).pop(),
+                  onTap: () {},
                   child: const CircleAvatar(
                     child: Icon(
                       Icons.arrow_back_rounded,

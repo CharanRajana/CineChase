@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/constants.dart';
 import '../../../core/providers.dart';
 import '../../components/horizontal_list_movies.dart';
-import '../../components/popup_menu.dart';
 import 'components/bottom_review_sheet.dart';
 import 'components/ratings_bar.dart';
 
@@ -53,22 +52,6 @@ class MovieDetailsScreenState extends ConsumerState<MovieDetailsScreen> {
                               colors: [Colors.black, Colors.transparent],
                               begin: Alignment.bottomCenter,
                               end: Alignment.topCenter,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.topRight,
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: InkWell(
-                            onTap: () {
-                              showPopUpMenu(context);
-                            },
-                            child: const CircleAvatar(
-                              child: Icon(
-                                Icons.menu_outlined,
-                              ),
                             ),
                           ),
                         ),

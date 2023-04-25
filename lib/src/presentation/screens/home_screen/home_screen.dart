@@ -1,4 +1,3 @@
-import 'package:cinechase/src/presentation/components/popup_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cinechase/src/presentation/components/horizontal_list_movies.dart';
@@ -39,22 +38,6 @@ class HomeScreen extends ConsumerWidget {
                           colors: [Colors.black, Colors.transparent],
                           begin: Alignment.bottomCenter,
                           end: Alignment.topCenter,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: InkWell(
-                        onTap: () {
-                          showPopUpMenu(context);
-                        },
-                        child: const CircleAvatar(
-                          child: Icon(
-                            Icons.menu_rounded,
-                          ),
                         ),
                       ),
                     ),

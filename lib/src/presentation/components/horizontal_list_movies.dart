@@ -40,7 +40,8 @@ class HorizontalMoviesList extends StatelessWidget {
                 return SizedBox(
                   width: 350,
                   child: InkWell(
-                    onTap: () => Navigator.of(context).push(
+                    onTap: () => Navigator.push(
+                      context,
                       MaterialPageRoute(
                         builder: (context) => MovieDetailsScreen(
                           id: movies[index].id,

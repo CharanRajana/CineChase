@@ -15,7 +15,8 @@ class SearchBar extends StatelessWidget {
       height: 56,
       width: size.width * 0.7,
       child: InkWell(
-        onTap: () => Navigator.of(context).push(
+        onTap: () => Navigator.push(
+          context,
           MaterialPageRoute(
             builder: (context) => const SearchScreen(),
           ),
