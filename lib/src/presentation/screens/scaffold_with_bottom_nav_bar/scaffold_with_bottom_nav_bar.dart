@@ -1,7 +1,9 @@
 import 'package:cinechase/src/presentation/screens/auth_screens/login_screen.dart';
-import 'package:cinechase/src/presentation/screens/favourites_screen/favourites_screen.dart';
 import 'package:cinechase/src/presentation/screens/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:navigator_scope/navigator_scope.dart';
+
+import '../favourites_screen/favourites_screen.dart';
 
 class ScaffoldWithBottomNavBar extends StatefulWidget {
   const ScaffoldWithBottomNavBar({super.key});
@@ -12,57 +14,73 @@ class ScaffoldWithBottomNavBar extends StatefulWidget {
 }
 
 class _ScaffoldWithBottomNavBarState extends State<ScaffoldWithBottomNavBar> {
-  int currentPageIndex = 0;
+  int currentTab = 0;
+
+  final tabs = const [
+    NavigationDestination(
+      icon: Icon(Icons.explore_outlined),
+      selectedIcon: Icon(Icons.explore),
+      label: 'Discover',
+      tooltip: '',
+    ),
+    NavigationDestination(
+      icon: Icon(Icons.person_2_outlined),
+      selectedIcon: Icon(Icons.person_2),
+      label: 'Profile',
+      tooltip: '',
+    ),
+    NavigationDestination(
+      icon: Icon(Icons.bookmark_outline),
+      selectedIcon: Icon(Icons.bookmark),
+      label: 'WatchList',
+      tooltip: '',
+    ),
+  ];
+
+  final navigatorKeys = [
+    GlobalKey<NavigatorState>(debugLabel: 'Home Tab'),
+    GlobalKey<NavigatorState>(debugLabel: 'Profile Tab'),
+    GlobalKey<NavigatorState>(debugLabel: 'WatchList Tab'),
+  ];
+
+  NavigatorState get currentNavigator =>
+      navigatorKeys[currentTab].currentState!;
+
+  void onTabSelected(int tab) {
+    if (tab == currentTab && currentNavigator.canPop()) {
+      currentNavigator.popUntil((route) => route.isFirst);
+    } else {
+      setState(() => currentTab = tab);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    final body = NavigatorScope(
+      currentDestination: currentTab,
+      destinationCount: tabs.length,
+      destinationBuilder: (context, index) {
+        return NestedNavigator(
+          navigatorKey: navigatorKeys[index],
+          builder: (context) => IndexedStack(
+            index: index,
+            children: const [
+              HomeScreen(),
+              LoginScreen(),
+              WatchListScreen(),
+            ],
+          ),
+        );
+      },
+    );
+
     return Scaffold(
       bottomNavigationBar: NavigationBar(
-        height: 80,
-        onDestinationSelected: (int index) {
-          setState(() {
-            currentPageIndex = index;
-          });
-        },
-        selectedIndex: currentPageIndex,
+        selectedIndex: currentTab,
         destinations: tabs,
+        onDestinationSelected: onTabSelected,
       ),
-      body: IndexedStack(
-        index: currentPageIndex,
-        children: const [
-          HomeScreen(),
-          LoginScreen(),
-          FavouritesScreen(),
-        ],
-      ),
+      body: body,
     );
   }
 }
-
-class ScaffoldWithNavBarTabItem extends NavigationDestination {
-  const ScaffoldWithNavBarTabItem({
-    super.key,
-    required super.selectedIcon,
-    required super.icon,
-    required super.label,
-    super.tooltip = '',
-  });
-}
-
-final tabs = [
-  const ScaffoldWithNavBarTabItem(
-    selectedIcon: Icon(Icons.explore),
-    icon: Icon(Icons.explore_outlined),
-    label: 'Home',
-  ),
-  const ScaffoldWithNavBarTabItem(
-    selectedIcon: Icon(Icons.person_3),
-    icon: Icon(Icons.person_3_outlined),
-    label: 'Profile',
-  ),
-  const ScaffoldWithNavBarTabItem(
-    selectedIcon: Icon(Icons.favorite),
-    icon: Icon(Icons.favorite_outline),
-    label: 'Favourites',
-  ),
-];

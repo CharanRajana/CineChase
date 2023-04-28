@@ -41,7 +41,7 @@ class MovieDetailsScreenState extends ConsumerState<MovieDetailsScreen> {
                         decoration: BoxDecoration(
                           image: DecorationImage(
                             image: NetworkImage(
-                              Constants.bgPrefix + movie.backdropPath,
+                              Constants.bgPrefix + movie.backdropPath!,
                             ),
                             fit: BoxFit.cover,
                           ),
@@ -74,7 +74,7 @@ class MovieDetailsScreenState extends ConsumerState<MovieDetailsScreen> {
                         top: 300,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.max,
+                          mainAxisSize: MainAxisSize.min,
                           children: [
                             Padding(
                               padding: const EdgeInsets.symmetric(
@@ -95,129 +95,114 @@ class MovieDetailsScreenState extends ConsumerState<MovieDetailsScreen> {
                             ),
                             Padding(
                               padding: const EdgeInsets.symmetric(
-                                horizontal: 8,
                                 vertical: 8,
                               ),
-                              child: DefaultTextStyle(
-                                style: Theme.of(context).textTheme.titleMedium!,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    FittedBox(
-                                      fit: BoxFit.fitWidth,
-                                      child: Text(
-                                        movie.title,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleMedium
-                                            ?.copyWith(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .primary,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    RichText(
-                                      text: TextSpan(
-                                        children: [
-                                          TextSpan(
-                                            text: 'Average Rating:  ',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .titleSmall
-                                                ?.copyWith(
-                                                    color: Theme.of(context)
-                                                        .colorScheme
-                                                        .primary,
-                                                    fontWeight:
-                                                        FontWeight.bold),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Text(
+                                    movie.title,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium
+                                        ?.copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  ),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  RichText(
+                                    text: TextSpan(
+                                      children: [
+                                        TextSpan(
+                                          text: 'Average Rating:  ',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleSmall
+                                              ?.copyWith(
+                                                  color: Theme.of(context)
+                                                      .colorScheme
+                                                      .primary,
+                                                  fontWeight: FontWeight.bold),
+                                        ),
+                                        TextSpan(
+                                          text: (movie.rating! / 2)
+                                              .toStringAsFixed(1),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleSmall
+                                              ?.copyWith(
+                                                  fontWeight: FontWeight.bold),
+                                        ),
+                                        const WidgetSpan(
+                                          child: Icon(
+                                            Icons.star,
+                                            color: Colors.amber,
+                                            size: 18,
                                           ),
-                                          TextSpan(
-                                            text: (movie.rating / 2)
-                                                .toStringAsFixed(1),
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .titleSmall
-                                                ?.copyWith(
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                          ),
-                                          const WidgetSpan(
-                                            child: Icon(
-                                              Icons.star,
-                                              color: Colors.amber,
-                                              size: 18,
-                                            ),
-                                          ),
-                                          TextSpan(
-                                            text: '/5',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .titleSmall
-                                                ?.copyWith(
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                          ),
-                                        ],
-                                      ),
+                                        ),
+                                        TextSpan(
+                                          text: '/5',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleSmall
+                                              ?.copyWith(
+                                                  fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
                                     ),
-                                    const SizedBox(
-                                      height: 10,
+                                  ),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  IconTheme(
+                                    data: IconThemeData(
+                                      color:
+                                          Theme.of(context).colorScheme.primary,
+                                      size: 24,
                                     ),
-                                    IconTheme(
-                                      data: IconThemeData(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .primary,
-                                        size: 24,
-                                      ),
-                                      child: InkWell(
-                                        onTap: () {
-                                          bottomReviewSheet(
-                                              context, ratings, ref);
-                                        },
-                                        child: RatingsBar(ratings: ratings),
-                                      ),
-                                    ),
-                                    InkWell(
+                                    child: InkWell(
                                       onTap: () {
-                                        ref
-                                            .read(isFavouriteProvider.notifier)
-                                            .state = !isFavourite;
+                                        bottomReviewSheet(
+                                            context, ratings, ref);
                                       },
-                                      child: isFavourite
-                                          ? const Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  vertical: 8.0),
-                                              child: Icon(
-                                                Icons.bookmark,
-                                                size: 20,
-                                                color: Colors.amber,
-                                              ),
-                                            )
-                                          : Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 8.0),
-                                              child: Icon(
-                                                Icons.bookmark_outline,
-                                                size: 20,
-                                                color: Colors.grey.shade600,
-                                              ),
-                                            ),
+                                      child: RatingsBar(ratings: ratings),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      ref
+                                          .read(isFavouriteProvider.notifier)
+                                          .state = !isFavourite;
+                                    },
+                                    child: isFavourite
+                                        ? const Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                vertical: 8.0),
+                                            child: Icon(
+                                              Icons.bookmark,
+                                              size: 20,
+                                              color: Colors.amber,
+                                            ),
+                                          )
+                                        : Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 8.0),
+                                            child: Icon(
+                                              Icons.bookmark_outline,
+                                              size: 20,
+                                              color: Colors.grey.shade600,
+                                            ),
+                                          ),
+                                  ),
+                                ],
                               ),
                             ),
                           ],

@@ -80,7 +80,7 @@ Padding verticalMoviesList(List<Movie> movies) {
                             Padding(
                               padding: const EdgeInsets.symmetric(vertical: 10),
                               child: Text(
-                                movies[index].overview,
+                                movies[index].overview!,
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium

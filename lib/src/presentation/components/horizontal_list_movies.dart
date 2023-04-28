@@ -33,12 +33,12 @@ class HorizontalMoviesList extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 280,
+            height: 300,
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return SizedBox(
-                  width: 350,
+                  width: 250,
                   child: InkWell(
                     onTap: () => Navigator.push(
                       context,
@@ -54,7 +54,7 @@ class HorizontalMoviesList extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: AspectRatio(
-                            aspectRatio: 16 / 9,
+                            aspectRatio: 9 / 16,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(8),
                               child: Stack(

@@ -20,16 +20,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 50),
-              const Icon(
-                Icons.lock,
-                size: 100,
-              ),
-              const SizedBox(height: 70),
-              Text(
-                'Register for a personalized experience',
-                style: Theme.of(context).textTheme.bodyLarge,
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 25,
+                ),
+                child: Text(
+                  'SignIn',
+                  style: Theme.of(context).textTheme.displayLarge,
+                ),
               ),
               const SizedBox(height: 10),
               CustomTextField(
@@ -72,7 +73,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   const SizedBox(width: 4),
                   InkWell(
                     onTap: () => Navigator.of(context).pop(),
-                    child: Text('Login now',
+                    child: Text(' Login now',
                         style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             color: Theme.of(context).colorScheme.secondary)),
                   ),

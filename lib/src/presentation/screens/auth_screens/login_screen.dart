@@ -38,16 +38,17 @@ class _LoginScreenState extends State<LoginScreen> {
             Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 50),
-                  const Icon(
-                    Icons.lock,
-                    size: 100,
-                  ),
-                  const SizedBox(height: 70),
-                  Text(
-                    'Please Login to view your Profile',
-                    style: Theme.of(context).textTheme.bodyLarge,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 25,
+                    ),
+                    child: Text(
+                      'Login',
+                      style: Theme.of(context).textTheme.displayLarge,
+                    ),
                   ),
                   const SizedBox(height: 10),
                   CustomTextField(
@@ -76,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 25),
                   CustomButton(
-                    text: 'Sign In',
+                    text: 'Login',
                     onPressed: () {},
                   ),
                   const SizedBox(height: 20),
@@ -95,7 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         child: Text(
-                          'Register now',
+                          ' Register now',
                           style: Theme.of(context)
                               .textTheme
                               .bodyMedium!
