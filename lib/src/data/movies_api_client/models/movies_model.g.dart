@@ -6,33 +6,34 @@ part of 'movies_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Movie _$MovieFromJson(Map<String, dynamic> json) => Movie(
-      json['id'] as int,
-      (json['genres'] as List<dynamic>?)
-              ?.map((e) => Genre.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
-      json['adult'] as bool? ?? false,
-      json['backdrop_path'] as String? ?? '',
-      json['poster_path'] as String? ?? '',
-      json['title'] as String,
-      json['overview'] as String? ?? '',
-      json['runtime'] as int? ?? 0,
-      json['status'] as String? ?? 'released',
-      (json['vote_average'] as num?)?.toDouble() ?? 0,
-      json['tagline'] as String? ?? '',
+_$_Movie _$$_MovieFromJson(Map<String, dynamic> json) => _$_Movie(
+      voteCount: json['vote_count'] as int?,
+      id: json['id'] as int,
+      video: json['video'] as bool? ?? false,
+      rating: (json['vote_average'] as num?)?.toDouble(),
+      title: json['title'] as String,
+      popularity: (json['popularity'] as num?)?.toDouble(),
+      posterPath: json['poster_path'] as String,
+      originalLanguage: json['original_language'] as String?,
+      originalTitle: json['original_title'] as String?,
+      backdropPath: json['backdrop_path'] as String?,
+      adult: json['adult'] as bool?,
+      overview: json['overview'] as String?,
+      releaseDate: json['release_date'] as String?,
     );
 
-Map<String, dynamic> _$MovieToJson(Movie instance) => <String, dynamic>{
+Map<String, dynamic> _$$_MovieToJson(_$_Movie instance) => <String, dynamic>{
+      'vote_count': instance.voteCount,
       'id': instance.id,
-      'genres': instance.genres,
-      'adult': instance.adult,
-      'backdrop_path': instance.backdropPath,
-      'poster_path': instance.posterPath,
-      'title': instance.title,
-      'overview': instance.overview,
-      'runtime': instance.runtime,
-      'status': instance.status,
+      'video': instance.video,
       'vote_average': instance.rating,
-      'tagline': instance.tagline,
+      'title': instance.title,
+      'popularity': instance.popularity,
+      'poster_path': instance.posterPath,
+      'original_language': instance.originalLanguage,
+      'original_title': instance.originalTitle,
+      'backdrop_path': instance.backdropPath,
+      'adult': instance.adult,
+      'overview': instance.overview,
+      'release_date': instance.releaseDate,
     };
