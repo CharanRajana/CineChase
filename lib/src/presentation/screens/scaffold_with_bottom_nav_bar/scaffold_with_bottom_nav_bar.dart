@@ -1,4 +1,4 @@
-import 'package:cinechase/src/presentation/screens/auth_screens/login_screen.dart';
+import 'package:cinechase/src/presentation/screens/auth_screens/sign_in_screen.dart';
 import 'package:cinechase/src/presentation/screens/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:navigator_scope/navigator_scope.dart';
@@ -66,7 +66,7 @@ class _ScaffoldWithBottomNavBarState extends State<ScaffoldWithBottomNavBar> {
             index: index,
             children: const [
               HomeScreen(),
-              LoginScreen(),
+              SignInScreen(),
               WatchListScreen(),
             ],
           ),

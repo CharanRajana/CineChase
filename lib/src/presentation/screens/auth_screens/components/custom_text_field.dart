@@ -4,12 +4,14 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final bool obscureText;
+  final String? Function(String?)? validator;
 
   const CustomTextField({
     super.key,
     required this.controller,
     required this.hintText,
     required this.obscureText,
+    required this.validator,
   });
 
   @override
@@ -19,12 +21,7 @@ class CustomTextField extends StatelessWidget {
       child: TextFormField(
         controller: controller,
         obscureText: obscureText,
-        validator: (String? value) {
-          if (value!.isEmpty) {
-            return 'Email is not valid';
-          }
-          return null;
-        },
+        validator: validator,
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
