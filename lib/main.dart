@@ -1,11 +1,22 @@
+import 'package:cinechase/src/core/constants.dart';
 import 'package:cinechase/src/core/theme.dart';
+import 'package:cinechase/src/domain/supabase_repository/auth_status.dart';
+import 'package:cinechase/src/domain/supabase_repository/supabase_client.dart';
+import 'package:cinechase/src/presentation/screens/auth_screens/sign_in_screen.dart';
 import 'package:cinechase/src/presentation/screens/scaffold_with_bottom_nav_bar/scaffold_with_bottom_nav_bar.dart';
 import 'package:device_preview_screenshot/device_preview_screenshot.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Supabase.initialize(
+    url: Constants.supabaseUrl,
+    anonKey: Constants.supabaseKey,
+  );
   runApp(
     DevicePreview(
       tools: const [
@@ -25,6 +36,19 @@ class Application extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final client = ref.watch(supabaseClientProvider);
+    final isLoggedIn = ref.watch(authStatusProvider);
+    client.auth.onAuthStateChange.listen(
+      (event) {
+        AuthChangeEvent data = event.event;
+        if (data == AuthChangeEvent.signedIn) {
+          ref.read(authStatusProvider.notifier).state = true;
+        }
+        if (data == AuthChangeEvent.signedOut) {
+          ref.read(authStatusProvider.notifier).state = false;
+        }
+      },
+    );
     return MaterialApp(
       useInheritedMediaQuery: true,
       locale: DevicePreview.locale(context),
@@ -33,7 +57,8 @@ class Application extends ConsumerWidget {
       title: 'Group project',
       darkTheme: CustomTheme.darkTheme,
       themeMode: ThemeMode.dark,
-      home: const ScaffoldWithBottomNavBar(),
+      home:
+          isLoggedIn ? const ScaffoldWithBottomNavBar() : const SignInScreen(),
     );
   }
 }
