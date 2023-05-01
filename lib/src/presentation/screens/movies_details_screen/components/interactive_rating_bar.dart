@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../../core/providers.dart';
+import '../../../../core/global_provider.dart';
 import 'half_filled_icon.dart';
 
 class InteractiveRatingBar extends ConsumerWidget {
@@ -19,7 +19,6 @@ class InteractiveRatingBar extends ConsumerWidget {
       glow: false,
       initialRating: ratings,
       direction: Axis.horizontal,
-      allowHalfRating: true,
       itemCount: 5,
       ratingWidget: RatingWidget(
         full: const Icon(

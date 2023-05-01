@@ -1,11 +1,8 @@
 import 'package:cinechase/src/core/constants.dart';
 import 'package:cinechase/src/core/theme.dart';
 import 'package:cinechase/src/domain/supabase_repository/auth_status.dart';
-import 'package:cinechase/src/domain/supabase_repository/supabase_client.dart';
 import 'package:cinechase/src/presentation/screens/auth_screens/sign_in_screen.dart';
 import 'package:cinechase/src/presentation/screens/scaffold_with_bottom_nav_bar/scaffold_with_bottom_nav_bar.dart';
-import 'package:device_preview_screenshot/device_preview_screenshot.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -17,16 +14,10 @@ Future<void> main() async {
     url: Constants.supabaseUrl,
     anonKey: Constants.supabaseKey,
   );
+
   runApp(
-    DevicePreview(
-      tools: const [
-        ...DevicePreview.defaultTools,
-        DevicePreviewScreenshot(),
-      ],
-      enabled: !kReleaseMode,
-      builder: (context) => const ProviderScope(
-        child: Application(),
-      ),
+    const ProviderScope(
+      child: Application(),
     ),
   );
 }
@@ -36,23 +27,9 @@ class Application extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final client = ref.watch(supabaseClientProvider);
-    final isLoggedIn = ref.watch(authStatusProvider);
-    client.auth.onAuthStateChange.listen(
-      (event) {
-        AuthChangeEvent data = event.event;
-        if (data == AuthChangeEvent.signedIn) {
-          ref.read(authStatusProvider.notifier).state = true;
-        }
-        if (data == AuthChangeEvent.signedOut) {
-          ref.read(authStatusProvider.notifier).state = false;
-        }
-      },
-    );
+    final isLoggedIn = ref.watch(authStatusProvider).isLoggedIn();
+
     return MaterialApp(
-      useInheritedMediaQuery: true,
-      locale: DevicePreview.locale(context),
-      builder: DevicePreview.appBuilder,
       debugShowCheckedModeBanner: false,
       title: 'Group project',
       darkTheme: CustomTheme.darkTheme,

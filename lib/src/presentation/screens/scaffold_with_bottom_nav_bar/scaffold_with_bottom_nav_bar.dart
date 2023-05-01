@@ -3,7 +3,7 @@ import 'package:cinechase/src/presentation/screens/profile_screen/profile_screen
 import 'package:flutter/material.dart';
 import 'package:navigator_scope/navigator_scope.dart';
 
-import '../favourites_screen/favourites_screen.dart';
+import '../watchlist_screen/watchlist_screen.dart';
 
 class ScaffoldWithBottomNavBar extends StatefulWidget {
   const ScaffoldWithBottomNavBar({super.key});
