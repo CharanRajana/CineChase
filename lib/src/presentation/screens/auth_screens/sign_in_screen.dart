@@ -1,4 +1,4 @@
-import 'package:cinechase/src/domain/supabase_repository/supabase_auth_service.dart';
+import 'package:cinechase/src/repository/supabase_repository/supabase_auth_service.dart';
 import 'package:cinechase/src/presentation/screens/auth_screens/components/custom_button.dart';
 import 'package:cinechase/src/presentation/screens/auth_screens/sign_up_screen.dart';
 import 'package:cinechase/src/presentation/screens/scaffold_with_bottom_nav_bar/scaffold_with_bottom_nav_bar.dart';

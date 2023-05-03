@@ -1,8 +1,8 @@
+import 'package:cinechase/src/core/assets.dart';
+import 'package:cinechase/src/core/constants.dart';
 import 'package:cinechase/src/presentation/screens/movies_details_screen/movies_details_screen.dart';
+import 'package:cinechase/src/repository/movies_api_client/models/models.dart';
 import 'package:flutter/material.dart';
-import '../../../../core/assets.dart';
-import '../../../../core/constants.dart';
-import '../../../../data/movies_api_client/models/movies_model.dart';
 
 class HorizontalMoviesList extends StatelessWidget {
   const HorizontalMoviesList({

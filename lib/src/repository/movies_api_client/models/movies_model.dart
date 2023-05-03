@@ -11,7 +11,7 @@ class Movie with _$Movie {
     required int id,
     @Default(false) bool video,
     @JsonKey(name: 'vote_average') double? voteAverage,
-    required String title,
+    @Default('') String title,
     double? popularity,
     @JsonKey(name: 'poster_path') @Default('') String posterPath,
     @JsonKey(name: 'original_language') String? originalLanguage,

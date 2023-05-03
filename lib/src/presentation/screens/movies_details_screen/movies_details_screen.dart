@@ -1,4 +1,4 @@
-import 'package:cinechase/src/data/movies_api_client/providers/movies_api_providers.dart';
+import 'package:cinechase/src/repository/movies_api_client/providers/movies_api_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
@@ -26,7 +26,6 @@ class MovieDetailsScreenState extends ConsumerState<MovieDetailsScreen> {
     final height = MediaQuery.of(context).size.height;
     final movie = ref.watch(movieDetailsProvider(widget.id));
     final ratings = ref.watch(ratingProvider);
-    final isFavourite = ref.watch(isFavouriteProvider);
     final recommendation = ref.watch(recommendedMoviesProvider(widget.id));
     return movie.when(
       data: (movie) {
@@ -194,31 +193,10 @@ class MovieDetailsScreenState extends ConsumerState<MovieDetailsScreen> {
                                       ),
                                     ),
                                     InkWell(
-                                      onTap: () {
-                                        ref
-                                            .read(isFavouriteProvider.notifier)
-                                            .state = !isFavourite;
-                                      },
-                                      child: !isFavourite
-                                          ? const Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  vertical: 8.0),
-                                              child: Icon(
-                                                Icons.bookmark,
-                                                size: 20,
-                                                color: Colors.amber,
-                                              ),
-                                            )
-                                          : Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 8.0),
-                                              child: Icon(
-                                                Icons.bookmark_outline,
-                                                size: 20,
-                                                color: Colors.grey.shade600,
-                                              ),
-                                            ),
+                                      onTap: () {},
+                                      child: const Icon(
+                                        Icons.bookmark_outline,
+                                      ),
                                     ),
                                   ],
                                 ),

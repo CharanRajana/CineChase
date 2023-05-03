@@ -1,4 +1,4 @@
-import 'package:cinechase/src/data/movies_api_client/providers/movies_api_providers.dart';
+import 'package:cinechase/src/repository/movies_api_client/providers/movies_api_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'components/search_view.dart';

@@ -261,7 +261,7 @@ class _$_Movie implements _Movie {
       required this.id,
       this.video = false,
       @JsonKey(name: 'vote_average') this.voteAverage,
-      required this.title,
+      this.title = '',
       this.popularity,
       @JsonKey(name: 'poster_path') this.posterPath = '',
       @JsonKey(name: 'original_language') this.originalLanguage,
@@ -286,6 +286,7 @@ class _$_Movie implements _Movie {
   @JsonKey(name: 'vote_average')
   final double? voteAverage;
   @override
+  @JsonKey()
   final String title;
   @override
   final double? popularity;
@@ -381,7 +382,7 @@ abstract class _Movie implements Movie {
       required final int id,
       final bool video,
       @JsonKey(name: 'vote_average') final double? voteAverage,
-      required final String title,
+      final String title,
       final double? popularity,
       @JsonKey(name: 'poster_path') final String posterPath,
       @JsonKey(name: 'original_language') final String? originalLanguage,

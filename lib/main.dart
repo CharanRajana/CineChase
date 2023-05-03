@@ -1,6 +1,6 @@
 import 'package:cinechase/src/core/constants.dart';
 import 'package:cinechase/src/core/theme.dart';
-import 'package:cinechase/src/domain/supabase_repository/auth_status.dart';
+import 'package:cinechase/src/repository/supabase_repository/auth_status.dart';
 import 'package:cinechase/src/presentation/screens/auth_screens/sign_in_screen.dart';
 import 'package:cinechase/src/presentation/screens/scaffold_with_bottom_nav_bar/scaffold_with_bottom_nav_bar.dart';
 import 'package:flutter/material.dart';

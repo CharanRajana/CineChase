@@ -11,7 +11,7 @@ _$_Movie _$$_MovieFromJson(Map<String, dynamic> json) => _$_Movie(
       id: json['id'] as int,
       video: json['video'] as bool? ?? false,
       voteAverage: (json['vote_average'] as num?)?.toDouble(),
-      title: json['title'] as String,
+      title: json['title'] as String? ?? '',
       popularity: (json['popularity'] as num?)?.toDouble(),
       posterPath: json['poster_path'] as String? ?? '',
       originalLanguage: json['original_language'] as String?,

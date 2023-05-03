@@ -1,4 +1,4 @@
-import 'package:cinechase/src/domain/supabase_repository/supabase_client.dart';
+import 'package:cinechase/src/repository/supabase_repository/supabase_client.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' hide Provider;
 

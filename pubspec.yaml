@@ -21,6 +21,8 @@ dependencies:
   path_provider: ^2.0.14
   path: ^1.8.2
   sliding_up_panel: ^2.0.0+1
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
   
 
 dev_dependencies:

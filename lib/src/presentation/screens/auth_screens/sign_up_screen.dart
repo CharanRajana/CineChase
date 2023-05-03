@@ -3,7 +3,7 @@ import 'package:cinechase/src/presentation/screens/auth_screens/components/custo
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../domain/supabase_repository/supabase_auth_service.dart';
+import '../../../repository/supabase_repository/supabase_auth_service.dart';
 import '../scaffold_with_bottom_nav_bar/scaffold_with_bottom_nav_bar.dart';
 
 class SignUpScreen extends StatefulWidget {
