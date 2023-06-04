@@ -1,34 +1,41 @@
+import 'package:cinechase/src/constants/constantss.dart';
+import 'package:cinechase/src/repository/database_repository/controller/user_controller.dart';
 import 'package:cinechase/src/repository/movies_api_client/providers/movies_api_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
-import '../../../core/constants.dart';
-import '../../../core/global_provider.dart';
+
 import 'components/bottom_review_sheet.dart';
 import 'components/ratings_bar.dart';
 import 'components/sliding_up_grid_view.dart';
 
 class MovieDetailsScreen extends ConsumerStatefulWidget {
+  static route(int id) => MaterialPageRoute(
+        builder: (context) => MovieDetailsScreen(id: id),
+      );
+  final int id;
   const MovieDetailsScreen({
     super.key,
     required this.id,
   });
 
-  final int id;
-
   @override
-  MovieDetailsScreenState createState() => MovieDetailsScreenState();
+  ConsumerState<MovieDetailsScreen> createState() => _MovieDetailsScreenState();
 }
 
-class MovieDetailsScreenState extends ConsumerState<MovieDetailsScreen> {
+class _MovieDetailsScreenState extends ConsumerState<MovieDetailsScreen> {
   @override
   Widget build(BuildContext context) {
+    final user = ref.watch(userControllerProvider);
+    final controller = ref.read(userControllerProvider.notifier);
     final height = MediaQuery.of(context).size.height;
     final movie = ref.watch(movieDetailsProvider(widget.id));
-    final ratings = ref.watch(ratingProvider);
     final recommendation = ref.watch(recommendedMoviesProvider(widget.id));
     return movie.when(
       data: (movie) {
+        final ratings = user.ratings.containsKey(movie.id.toString())
+            ? user.ratings[movie.id.toString()] as double
+            : 0.0;
         return Scaffold(
           body: SlidingUpPanel(
             backdropEnabled: true,
@@ -187,17 +194,42 @@ class MovieDetailsScreenState extends ConsumerState<MovieDetailsScreen> {
                                       child: InkWell(
                                         onTap: () {
                                           bottomReviewSheet(
-                                              context, ratings, ref);
+                                              context, ratings, movie.id, ref);
                                         },
                                         child: RatingsBar(ratings: ratings),
                                       ),
                                     ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: const Icon(
-                                        Icons.bookmark_outline,
-                                      ),
+                                    const SizedBox(
+                                      height: 5,
                                     ),
+                                    InkWell(
+                                      onTap: () {
+                                        controller.updateWatchlist(movie);
+                                      },
+                                      child: user.watchlist.contains(movie)
+                                          ? const Padding(
+                                              padding: EdgeInsets.only(
+                                                left: 4,
+                                                top: 4,
+                                              ),
+                                              child: Icon(
+                                                Icons.favorite,
+                                                size: 18,
+                                                color: Colors.amber,
+                                              ),
+                                            )
+                                          : Padding(
+                                              padding: const EdgeInsets.only(
+                                                left: 4,
+                                                top: 4,
+                                              ),
+                                              child: Icon(
+                                                Icons.favorite,
+                                                size: 18,
+                                                color: Colors.grey.shade600,
+                                              ),
+                                            ),
+                                    )
                                   ],
                                 ),
                               ),

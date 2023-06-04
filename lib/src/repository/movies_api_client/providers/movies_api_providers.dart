@@ -1,10 +1,12 @@
+import 'package:cinechase/src/constants/secrets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../core/constants.dart';
 import '../api_client.dart';
 import '../models/models.dart';
 
 final apiClientProvider = Provider<MoviesApiClient>(
-  (ref) => MoviesApiClient(apiKey: Constants.apiKey),
+  (ref) => MoviesApiClient(
+    apiKey: Secrets.movieApiKey,
+  ),
 );
 
 final movieDetailsProvider = FutureProvider.autoDispose.family<Movie, int>(
@@ -26,5 +28,5 @@ final recommendedMoviesProvider =
 
 final fetchMoviesProvider =
     FutureProvider.autoDispose.family<List<Movie>, String>(
-  (ref, query) => ref.read(apiClientProvider).fetchMovies(query),
+  (ref, input) => ref.read(apiClientProvider).fetchMovies(input),
 );

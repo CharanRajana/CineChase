@@ -4,14 +4,14 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final bool obscureText;
-  final String? Function(String?)? validator;
+  final Icon icon;
 
   const CustomTextField({
     super.key,
     required this.controller,
     required this.hintText,
-    required this.obscureText,
-    required this.validator,
+    this.obscureText = false,
+    required this.icon,
   });
 
   @override
@@ -21,24 +21,23 @@ class CustomTextField extends StatelessWidget {
       child: TextFormField(
         controller: controller,
         obscureText: obscureText,
-        validator: validator,
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              width: 2,
-              color: Colors.grey.shade300,
+              width: 1,
+              color: Theme.of(context).colorScheme.outline,
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
               width: 2,
-              color: Colors.grey.shade300,
+              color: Theme.of(context).colorScheme.primary,
             ),
           ),
+          prefixIcon: icon,
           fillColor: Theme.of(context).colorScheme.surface,
           filled: true,
           labelText: hintText,
-          hintText: hintText,
           hintStyle: Theme.of(context).textTheme.bodyMedium,
         ),
       ),

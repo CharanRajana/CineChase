@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'interactive_rating_bar.dart';
 
 Future<dynamic> bottomReviewSheet(
-    BuildContext context, double ratings, WidgetRef ref) {
+    BuildContext context, double ratings, int movieId, WidgetRef ref) {
   return showModalBottomSheet(
     constraints: BoxConstraints.tight(const Size(600, 180)),
     context: context,
@@ -18,7 +18,10 @@ Future<dynamic> bottomReviewSheet(
               'Rate the Movie, Out of 5',
               style: Theme.of(context).textTheme.headlineSmall,
             ),
-            InteractiveRatingBar(ratings: ratings),
+            InteractiveRatingBar(
+              ratings: ratings,
+              movieId: movieId,
+            ),
           ],
         ),
       );

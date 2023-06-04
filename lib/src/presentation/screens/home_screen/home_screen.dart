@@ -1,88 +1,56 @@
-import 'package:cinechase/src/repository/movies_api_client/providers/movies_api_providers.dart';
+import 'package:cinechase/src/presentation/screens/discover_screen/discover_screen.dart';
+import 'package:cinechase/src/presentation/screens/profile_screen/profile_screen.dart';
+import 'package:cinechase/src/presentation/screens/favourites_screen/favourites_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:cinechase/src/presentation/screens/home_screen/components/horizontal_list_movies.dart';
-import 'package:cinechase/src/presentation/screens/home_screen/components/search_bar.dart';
-import '../../../core/assets.dart';
 
-class HomeScreen extends ConsumerWidget {
+class HomeScreen extends StatefulWidget {
+  static route() => MaterialPageRoute(
+        builder: (context) => const HomeScreen(),
+      );
   const HomeScreen({super.key});
+
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final size = MediaQuery.of(context).size;
-    final topMovies = ref.watch(topRatedMoviesProvider);
-    final playingMovies = ref.watch(nowPlayingProvider);
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int currentPageIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        top: false,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Stack(
-                children: [
-                  Container(
-                    height: 400,
-                    width: double.infinity,
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        opacity: 0.5,
-                        image: AssetImage(
-                          Assets.bgImage,
-                        ),
-                      ),
-                    ),
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [Colors.black, Colors.transparent],
-                          begin: Alignment.bottomCenter,
-                          end: Alignment.topCenter,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    top: 300,
-                    left: size.width * 0.1,
-                    right: size.width * 0.1,
-                    child: SearchBar(size: size),
-                  ),
-                ],
-              ),
-              playingMovies.when(
-                data: (movies) {
-                  return HorizontalMoviesList(
-                      title: 'Now Playing Movies', movies: movies);
-                },
-                error: (error, stackTrace) => Center(
-                  child: Text(
-                    error.toString(),
-                  ),
-                ),
-                loading: () => const SizedBox(),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              topMovies.when(
-                data: (movies) {
-                  return HorizontalMoviesList(
-                      title: 'Top Rated Movies', movies: movies);
-                },
-                error: (error, stackTrace) => Center(
-                  child: Text(
-                    error.toString(),
-                  ),
-                ),
-                loading: () => const Center(
-                  child: SizedBox(),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+      bottomNavigationBar: NavigationBar(
+          onDestinationSelected: (int index) {
+            setState(() {
+              currentPageIndex = index;
+            });
+          },
+          selectedIndex: currentPageIndex,
+          destinations: const <Widget>[
+            NavigationDestination(
+              icon: Icon(Icons.explore_outlined),
+              selectedIcon: Icon(Icons.explore),
+              label: 'Discover',
+              tooltip: '',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.favorite_outline_outlined),
+              selectedIcon: Icon(Icons.favorite),
+              label: 'Favourites',
+              tooltip: '',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.person_2_outlined),
+              selectedIcon: Icon(Icons.person_2),
+              label: 'Profile',
+              tooltip: '',
+            ),
+          ]),
+      body: <Widget>[
+        const DiscoverScreen(),
+        const FavouritesScreen(),
+        const ProfileScreen(),
+      ][currentPageIndex],
     );
   }
 }

@@ -1,5 +1,5 @@
-import 'package:cinechase/src/core/assets.dart';
-import 'package:cinechase/src/core/constants.dart';
+import 'package:cinechase/src/constants/assets.dart';
+import 'package:cinechase/src/constants/constantss.dart';
 import 'package:cinechase/src/presentation/screens/movies_details_screen/movies_details_screen.dart';
 import 'package:cinechase/src/repository/movies_api_client/models/models.dart';
 import 'package:flutter/material.dart';
@@ -14,13 +14,7 @@ Padding verticalMoviesList(List<Movie> movies) {
           height: 250,
           child: InkWell(
             onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => MovieDetailsScreen(
-                  id: movies[index].id,
-                ),
-              ),
-            ),
+                context, MovieDetailsScreen.route(movies[index].id)),
             child: Card(
               child: Row(
                 mainAxisSize: MainAxisSize.min,

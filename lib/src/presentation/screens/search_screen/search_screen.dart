@@ -11,6 +11,9 @@ final searchTextProvider = StateProvider<String>(
     (ref) => ref.read(searchTextEditingControllerProvider).text);
 
 class SearchScreen extends ConsumerStatefulWidget {
+  static route() => MaterialPageRoute(
+        builder: (context) => const SearchScreen(),
+      );
   const SearchScreen({super.key});
 
   @override

@@ -1,0 +1,113 @@
+import 'package:cinechase/src/constants/assets.dart';
+import 'package:cinechase/src/constants/constantss.dart';
+import 'package:cinechase/src/presentation/screens/movies_details_screen/movies_details_screen.dart';
+import 'package:cinechase/src/repository/database_repository/controller/user_controller.dart';
+import 'package:cinechase/src/repository/movies_api_client/models/models.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+class FavouritesScreen extends ConsumerWidget {
+  const FavouritesScreen({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final user = ref.watch(userControllerProvider);
+    final movies = user.watchlist.toList().cast<Movie>();
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Favourites',
+          style: Theme.of(context).textTheme.headlineSmall,
+        ),
+        centerTitle: true,
+        automaticallyImplyLeading: false,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 8,
+        ),
+        child: GridView.builder(
+          itemCount: movies.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            mainAxisSpacing: 4,
+            crossAxisSpacing: 4,
+          ),
+          itemBuilder: (context, index) {
+            return SizedBox(
+              child: InkWell(
+                onTap: () => Navigator.push(
+                  context,
+                  MovieDetailsScreen.route(movies[index].id),
+                ),
+                child: Hero(
+                  tag: movies[index].id.toString(),
+                  child: Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Stack(
+                          children: [
+                            FadeInImage(
+                              width: double.infinity,
+                              placeholder: const AssetImage(
+                                Assets.placeholder,
+                              ),
+                              image: movies[index].posterPath == ''
+                                  ? const AssetImage(
+                                      Assets.placeholder,
+                                    ) as ImageProvider
+                                  : NetworkImage(
+                                      Constants.posterPrefix +
+                                          movies[index].posterPath,
+                                    ),
+                              fit: BoxFit.fitWidth,
+                            ),
+                            const Positioned.fill(
+                              child: DecoratedBox(
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                    colors: [
+                                      Colors.transparent,
+                                      Colors.black,
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 16, horizontal: 16),
+                                child: Text(
+                                  movies[index].title,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .copyWith(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}

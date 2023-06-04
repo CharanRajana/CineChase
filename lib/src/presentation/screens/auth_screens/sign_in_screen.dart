@@ -1,23 +1,40 @@
-import 'package:cinechase/src/repository/supabase_repository/supabase_auth_service.dart';
-import 'package:cinechase/src/presentation/screens/auth_screens/components/custom_button.dart';
-import 'package:cinechase/src/presentation/screens/auth_screens/sign_up_screen.dart';
-import 'package:cinechase/src/presentation/screens/scaffold_with_bottom_nav_bar/scaffold_with_bottom_nav_bar.dart';
+import 'package:cinechase/src/common/custom_button.dart';
+import 'package:cinechase/src/repository/auth_repository/controller/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'components/custom_text_field.dart';
+import 'sign_up_screen.dart';
 
-class SignInScreen extends StatefulWidget {
+class SignInScreen extends ConsumerStatefulWidget {
+  static route() => MaterialPageRoute(
+        builder: (context) => const SignInScreen(),
+      );
   const SignInScreen({super.key});
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  ConsumerState<SignInScreen> createState() => _SignInScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _SignInScreenState extends ConsumerState<SignInScreen> {
   final _formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+  }
+
+  void onSignIn() {
+    ref.read(authControllerProvider.notifier).signIn(
+          email: emailController.text,
+          password: passwordController.text,
+          context: context,
+        );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,16 +61,10 @@ class _SignInScreenState extends State<SignInScreen> {
                 CustomTextField(
                   controller: emailController,
                   hintText: 'Email',
-                  obscureText: false,
-                  validator: (String? value) {
-                    if (value == null || value.trim().isEmpty) {
-                      return 'Please enter your email address';
-                    }
-                    if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
-                      return 'Please enter a valid email address';
-                    }
-                    return null;
-                  },
+                  icon: const Icon(
+                    Icons.email_outlined,
+                    size: 24,
+                  ),
                 ),
                 const SizedBox(
                   height: 5,
@@ -62,15 +73,10 @@ class _SignInScreenState extends State<SignInScreen> {
                   controller: passwordController,
                   hintText: 'Password',
                   obscureText: true,
-                  validator: (String? value) {
-                    if (value == null || value.trim().isEmpty) {
-                      return 'This field is required';
-                    }
-                    if (value.trim().length < 6) {
-                      return 'Username must be at least 6 characters in length';
-                    }
-                    return null;
-                  },
+                  icon: const Icon(
+                    Icons.key_outlined,
+                    size: 24,
+                  ),
                 ),
                 const SizedBox(height: 10),
                 Padding(
@@ -80,7 +86,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     children: [
                       Text(
                         'Forgot Password?',
-                        style: Theme.of(context).textTheme.bodySmall,
+                        style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     ],
                   ),
@@ -90,26 +96,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   builder: (context, ref, child) {
                     return CustomButton(
                       text: 'Sign In',
-                      onPressed: () {
-                        final auth = ref.watch(supabaseAuthProvider);
-
-                        if (_formKey.currentState!.validate()) {
-                          auth.signIn(
-                              email: emailController.text,
-                              password: passwordController.text);
-                          if (mounted) {
-                            Navigator.of(
-                              context,
-                              rootNavigator: true,
-                            ).push(
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const ScaffoldWithBottomNavBar(),
-                              ),
-                            );
-                          }
-                        }
-                      },
+                      onPressed: () => onSignIn(),
                     );
                   },
                 ),
@@ -123,11 +110,9 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     const SizedBox(width: 4),
                     InkWell(
-                      onTap: () => Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const SignUpScreen(),
-                        ),
-                      ),
+                      onTap: () {
+                        Navigator.push(context, SignUpScreen.route());
+                      },
                       child: Text(
                         ' Create an Account',
                         style: Theme.of(context).textTheme.bodyMedium!.copyWith(

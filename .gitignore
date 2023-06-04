@@ -31,8 +31,7 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
-
-lib/src/core/constants.dart
+*.env
 
 # Web related
 lib/generated_plugin_registrant.dart
